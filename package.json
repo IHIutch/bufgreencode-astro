@@ -46,5 +46,8 @@
     "postcss-import": "^15.1.0",
     "prettier-plugin-astro": "^0.8.0",
     "prettier-plugin-tailwindcss": "^0.2.3"
+  },
+  "engines": {
+    "node": ">=16"
   }
 }
