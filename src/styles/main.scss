@@ -1,0 +1,9 @@
+@import 'tailwind.scss';
+@import 'custom.scss';
+@import 'hamburgers.scss';
+
+@import '@docsearch/css/dist/style.css';
+
+.DocSearch.DocSearch-Button {
+  @apply w-full;
+}

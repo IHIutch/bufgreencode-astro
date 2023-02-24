@@ -1,0 +1,23 @@
+---
+import SidebarLayout from '@/layouts/SidebarLayout.astro'
+import CustomSEO from '@/components/CustomSEO.astro'
+---
+
+<head>
+  <CustomSEO />
+</head>
+<SidebarLayout>
+  <div class="flex">
+    <div class="my-12 w-full px-4 md:px-8 xl:w-3/4">
+      <div class="max-w-prose xl:mx-auto">
+        <h1 class="mb-2 text-5xl font-medium leading-tight">404</h1>
+        <p class="mb-8 text-lg text-gray-700">
+          Looks like you found a page that doesn't exist.
+        </p>
+        <div class="prose">
+          <a href="/"> Back to Home Page</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</SidebarLayout>

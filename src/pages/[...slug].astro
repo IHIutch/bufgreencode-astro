@@ -1,0 +1,74 @@
+---
+import PageToc from '@/components/PageToc'
+import SidebarLayout from '@/layouts/SidebarLayout.astro'
+import { getCollection } from 'astro:content'
+import { SEO } from 'astro-seo'
+import H2 from '@/components/content/H2.astro'
+import H3 from '@/components/content/H3.astro'
+import H4 from '@/components/content/H4.astro'
+import H5 from '@/components/content/H5.astro'
+import H6 from '@/components/content/H2.astro'
+import CustomSEO from '@/components/CustomSEO.astro'
+
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const allArticles = await getCollection('articles')
+  return allArticles.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }))
+}
+// 2. When it's time to render, you can get the entry directly from the prop
+const { entry } = Astro.props
+const { Content, components, headings } = await entry.render()
+---
+
+<head>
+  <CustomSEO slug={entry.slug} pageTitle={entry.data.title} />
+</head>
+<SidebarLayout>
+  <div class="flex">
+    <div class="my-12 w-full px-4 md:px-8 xl:w-[calc(100%-20rem)]">
+      <div class="max-w-prose xl:mx-auto">
+        <h1 class="mb-2 text-5xl font-medium leading-tight">
+          {entry.data.title}
+        </h1>
+        {
+          entry.data.lead ? (
+            <p class="text-lg text-gray-700">{entry.data.lead}</p>
+          ) : null
+        }
+        <div class="page-content prose">
+          <Content
+            components={{
+              ...components,
+              h2: H2,
+              h3: H3,
+              h4: H4,
+              h5: H5,
+              h6: H6,
+            }}
+          />
+        </div>
+      </div>
+    </div>
+    <aside class="hidden shrink-0 lg:w-80 xl:block">
+      {
+        headings?.length > 0 ? (
+          <div class="fixed top-0 h-screen pt-16">
+            <div class="h-full overflow-y-auto">
+              <div class="my-12 pr-4">
+                <div class="mb-2">
+                  <span class="text-xs font-bold uppercase tracking-wider text-gray-500">
+                    On this Page
+                  </span>
+                </div>
+                <PageToc headings={headings} client:visible />
+              </div>
+            </div>
+          </div>
+        ) : null
+      }
+    </aside>
+  </div>
+</SidebarLayout>

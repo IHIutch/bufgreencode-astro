@@ -1,0 +1,11 @@
+---
+import { HeadingLink } from './HeadingLink'
+const { id } = Astro.props
+---
+
+<div class="mt-[2em] scroll-mt-20">
+  <HeadingLink id={id} client:only="react" />
+  <h2 id={id} class="mt-0">
+    <slot />
+  </h2>
+</div>

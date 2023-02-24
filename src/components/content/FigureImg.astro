@@ -1,0 +1,14 @@
+---
+const { caption } = Astro.props
+---
+
+<figure class="not-prose mb-4">
+  <div class="inline-flex w-full rounded border p-1">
+    <slot />
+  </div>
+  {
+    caption ? (
+      <figcaption class="mt-1 text-sm text-gray-700">{caption}</figcaption>
+    ) : null
+  }
+</figure>

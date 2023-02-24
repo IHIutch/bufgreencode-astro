@@ -1,0 +1,42 @@
+---
+import NavbarComponent from '@/components/NavbarComponent.astro'
+import SubnavComponent from '@/components/SubnavComponent'
+import ArticlesAccordion from '@/components/ArticlesAccordion'
+import { getCollection } from 'astro:content'
+
+import '../styles/main.scss'
+
+const allArticles = await getCollection('articles')
+const { slug } = Astro.params
+---
+
+<div class="antialiased">
+  <div class="fixed top-0 z-10 w-full">
+    <NavbarComponent />
+    <SubnavComponent client:only>
+      <ArticlesAccordion activeSlug={slug} articles={allArticles} client:only />
+    </SubnavComponent>
+  </div>
+  <div class="mx-auto flex max-w-screen-2xl">
+    <div
+      class="fixed top-0 hidden h-full flex-shrink-0 pt-16 md:block md:w-72 2xl:w-80"
+    >
+      <nav class="sticky h-full overflow-y-auto border-r">
+        <div class="py-8">
+          <ArticlesAccordion
+            activeSlug={slug}
+            articles={allArticles}
+            client:only
+          />
+        </div>
+      </nav>
+    </div>
+    <div class="w-full pt-20 md:ml-72 md:pt-16 2xl:ml-80">
+      <div class="flex position-absolute w-full transition-all duration-200">
+        <main class="w-full">
+          <slot />
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
