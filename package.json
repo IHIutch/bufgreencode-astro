@@ -3,11 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "build": "pnpm build:postcss && astro build",
-    "build:postcss": "postcss styles/*.scss -m -d public/styles --ext css",
-    "dev": "concurrently \"pnpm dev:postcss\"  \"astro dev\"",
-    "dev:postcss": "postcss styles/*.scss -m -w -d public/styles --ext css",
+    "dev": "astro dev",
     "start": "astro dev",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

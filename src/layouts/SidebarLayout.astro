@@ -4,6 +4,8 @@ import SubnavComponent from '@/components/SubnavComponent'
 import ArticlesAccordion from '@/components/ArticlesAccordion'
 import { getCollection } from 'astro:content'
 
+import '../../styles/main.scss'
+
 const allArticles = await getCollection('articles')
 const { slug } = Astro.params
 ---
