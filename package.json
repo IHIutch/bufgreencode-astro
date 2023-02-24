@@ -3,9 +3,11 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "build": "pnpm build:postcss && astro build",
+    "build:postcss": "postcss styles/*.scss -m -d public/styles --ext css",
+    "dev": "concurrently \"pnpm dev:postcss\"  \"astro dev\"",
+    "dev:postcss": "postcss styles/*.scss -m -w -d public/styles --ext css",
     "start": "astro dev",
-    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -39,10 +41,12 @@
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "@tailwindcss/typography": "^0.5.9",
     "@types/lodash": "^4.14.191",
+    "concurrently": "^7.6.0",
     "cssnano": "^5.1.15",
     "eslint": "^8.34.0",
     "eslint-plugin-astro": "^0.23.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
+    "postcss-cli": "^10.1.0",
     "postcss-import": "^15.1.0",
     "prettier-plugin-astro": "^0.8.0",
     "prettier-plugin-tailwindcss": "^0.2.3"

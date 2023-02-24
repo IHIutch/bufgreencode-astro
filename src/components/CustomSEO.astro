@@ -46,6 +46,20 @@ const imageAlt =
     card: 'summary_large_image',
   }}
   extend={{
+    link: [
+      { rel: 'stylesheet', href: '/styles/main.css' },
+      {
+        rel: 'preload',
+        href: '/styles/main.css',
+        as: 'style',
+      },
+      { rel: 'stylesheet', href: '/styles/hamburgers.css' },
+      {
+        rel: 'preload',
+        href: '/styles/hamburgers.css',
+        as: 'style',
+      },
+    ],
     meta: [
       {
         name: 'viewport',
