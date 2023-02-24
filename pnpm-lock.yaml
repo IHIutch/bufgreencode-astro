@@ -3,21 +3,21 @@ lockfileVersion: 5.4
 specifiers:
   '@astrojs/mdx': ^0.17.2
   '@astrojs/react': ^2.0.2
-  '@astrojs/sitemap': ^1.0.1
+  '@astrojs/sitemap': ^1.1.0
   '@astrojs/tailwind': ^3.0.1
   '@csstools/postcss-sass': ^5.0.1
-  '@docsearch/css': '3'
+  '@docsearch/css': ^3.3.3
   '@docsearch/react': ^3.3.3
   '@fullhuman/postcss-purgecss': ^5.0.0
   '@markdoc/markdoc': ^0.2.2
   '@radix-ui/react-accordion': ^1.1.0
   '@radix-ui/react-collapsible': ^1.0.1
-  '@radix-ui/react-tooltip': ^1.0.3
+  '@radix-ui/react-tooltip': ^1.0.4
   '@tailwindcss/typography': ^0.5.9
   '@types/lodash': ^4.14.191
   '@types/react': ^18.0.28
   '@types/react-dom': ^18.0.11
-  astro: ^2.0.14
+  astro: ^2.0.15
   astro-seo: ^0.7.1
   autoprefixer: ^10.4.13
   clsx: ^1.2.1
@@ -34,22 +34,22 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.2.3
   react: ^18.2.0
   react-dom: ^18.2.0
-  tailwindcss: ^3.0.24
+  tailwindcss: ^3.2.7
 
 dependencies:
-  '@astrojs/mdx': 0.17.2_astro@2.0.14+rollup@3.17.2
+  '@astrojs/mdx': 0.17.2_astro@2.0.15+rollup@3.17.2
   '@astrojs/react': 2.0.2_3xleytyzprlgycb2ded54tx72i
-  '@astrojs/sitemap': 1.0.1
-  '@astrojs/tailwind': 3.0.1_hf2kjfio2dr6w52rh4mpociq2u
+  '@astrojs/sitemap': 1.1.0
+  '@astrojs/tailwind': 3.0.1_enl5tymeuxlslzmmdrwlr7zkvy
   '@docsearch/css': 3.3.3
   '@docsearch/react': 3.3.3_hf5ijsloe6gzee4vmv74rvas4u
   '@markdoc/markdoc': 0.2.2_pmekkgnqduwlme35zpnqhenc34
   '@radix-ui/react-accordion': 1.1.0_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-collapsible': 1.0.1_biqbaboplfbrettd7655fr4n2y
-  '@radix-ui/react-tooltip': 1.0.3_zula6vjvt3wdocc4mwcxqa6nzi
+  '@radix-ui/react-tooltip': 1.0.4_zula6vjvt3wdocc4mwcxqa6nzi
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
-  astro: 2.0.14
+  astro: 2.0.15
   astro-seo: 0.7.1
   autoprefixer: 10.4.13_postcss@8.4.21
   clsx: 1.2.1
@@ -220,13 +220,13 @@ packages:
       vscode-uri: 3.0.7
     dev: false
 
-  /@astrojs/markdown-remark/2.0.1_astro@2.0.14:
+  /@astrojs/markdown-remark/2.0.1_astro@2.0.15:
     resolution: {integrity: sha512-xQF1rXGJN18m+zZucwRRtmNehuhPMMhZhi6HWKrtpEAKnHSPk8lqf1GXgKH7/Sypglu8ivdECZ+EGs6kOYVasQ==}
     peerDependencies:
       astro: ^2.0.2
     dependencies:
       '@astrojs/prism': 2.0.0
-      astro: 2.0.14
+      astro: 2.0.15
       github-slugger: 1.5.0
       import-meta-resolve: 2.2.1
       rehype-raw: 6.1.1
@@ -243,16 +243,16 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/mdx/0.17.2_astro@2.0.14+rollup@3.17.2:
+  /@astrojs/mdx/0.17.2_astro@2.0.15+rollup@3.17.2:
     resolution: {integrity: sha512-mol57cw1jJMcQgKMRGn7p6cewajq6JTNtqj5aAZgROWam/phVDSOCbXj/WU3O9+3qFnyKtpczoufQKwJTQltAw==}
     engines: {node: '>=16.12.0'}
     dependencies:
-      '@astrojs/markdown-remark': 2.0.1_astro@2.0.14
+      '@astrojs/markdown-remark': 2.0.1_astro@2.0.15
       '@astrojs/prism': 2.0.0
       '@mdx-js/mdx': 2.3.0
       '@mdx-js/rollup': 2.3.0_rollup@3.17.2
       acorn: 8.8.2
-      es-module-lexer: 1.1.1
+      es-module-lexer: 1.2.0
       estree-util-visit: 1.2.1
       github-slugger: 1.5.0
       gray-matter: 4.0.3
@@ -296,21 +296,21 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/sitemap/1.0.1:
-    resolution: {integrity: sha512-qexepZPH6/dLToI/njxr2FjvyxJU0HBAnQRNzEggF0ok811oSNC6su1DkyW2VKp0TNPbWoujuSbcb1yFOjnAqA==}
+  /@astrojs/sitemap/1.1.0:
+    resolution: {integrity: sha512-JnKZcbD0WdFxw2VAj3qXb0cYKuvk6nwBYPfUy+plSa9TC9hikQrDFpd7yapOPTRf3AdmUittzFckoTw/nUilCw==}
     dependencies:
       sitemap: 7.1.1
       zod: 3.20.6
     dev: false
 
-  /@astrojs/tailwind/3.0.1_hf2kjfio2dr6w52rh4mpociq2u:
+  /@astrojs/tailwind/3.0.1_enl5tymeuxlslzmmdrwlr7zkvy:
     resolution: {integrity: sha512-QSYh/xmz454j1yZU9rjw2J24PpH7j3h2ClesqMaAniOtcuL8RfP7KYCnCrk01xvjwqqO+QBpZNDD/SUhHNtFFg==}
     peerDependencies:
       astro: ^2.0.4
       tailwindcss: ^3.0.24
     dependencies:
       '@proload/core': 0.3.3
-      astro: 2.0.14
+      astro: 2.0.15
       autoprefixer: 10.4.13_postcss@8.4.21
       postcss: 8.4.21
       postcss-load-config: 4.0.1_postcss@8.4.21
@@ -1236,8 +1236,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@radix-ui/react-tooltip/1.0.3_zula6vjvt3wdocc4mwcxqa6nzi:
-    resolution: {integrity: sha512-cmc9qV4KpgqdXVTn1K8KN8MnuSXvw+E719pKwyvpCGrQ+0AA2qTjcIL3uxCj4jc4k3sDR36RF7R3H7N5hPybBQ==}
+  /@radix-ui/react-tooltip/1.0.4_zula6vjvt3wdocc4mwcxqa6nzi:
+    resolution: {integrity: sha512-2h0BvJipRSv7nszzOCdAqb8fH7+Igz24GV1M4aCb/3UPfeMQ+clb1UM5/z2msW3Khir795OCQw2G74YGxjueWw==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
@@ -1724,14 +1724,14 @@ packages:
     resolution: {integrity: sha512-8Yo1nQrl2iB5zj+VUAHrvGIck8bZ4WAmXQgJOeF9FuAZGQD5qK6DtSZaRbpBXsFfZYHA6tE8pjs3btHhLbC1zQ==}
     dev: false
 
-  /astro/2.0.14:
-    resolution: {integrity: sha512-BiXnHyK3rj5Uz45V5p9jRi0xtJc/zxhCxnXYAekHHF1bVvvoa3aXMwl0GZ3Bc0mxP6vPLmbRcjNKdqfyZn1B3Q==}
+  /astro/2.0.15:
+    resolution: {integrity: sha512-CUJNrcdgcSjASValRNEesTgXSefgQ8Z9GHrZXckmTivatoBlVkYb8G8tmk7dgRt6JF+bwfOsA6cGdv7+G7hCbA==}
     engines: {node: '>=16.12.0', npm: '>=6.14.0'}
     hasBin: true
     dependencies:
       '@astrojs/compiler': 1.1.2
       '@astrojs/language-server': 0.28.3
-      '@astrojs/markdown-remark': 2.0.1_astro@2.0.14
+      '@astrojs/markdown-remark': 2.0.1_astro@2.0.15
       '@astrojs/telemetry': 2.0.0
       '@astrojs/webapi': 2.0.1
       '@babel/core': 7.21.0
@@ -1751,7 +1751,7 @@ packages:
       deepmerge-ts: 4.3.0
       devalue: 4.3.0
       diff: 5.1.0
-      es-module-lexer: 1.1.1
+      es-module-lexer: 1.2.0
       estree-walker: 3.0.3
       execa: 6.1.0
       fast-glob: 3.2.12
@@ -1900,7 +1900,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001457
-      electron-to-chromium: 1.4.308
+      electron-to-chromium: 1.4.310
       node-releases: 2.0.10
       update-browserslist-db: 1.0.10_browserslist@4.21.5
 
@@ -2357,8 +2357,8 @@ packages:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: false
 
-  /electron-to-chromium/1.4.308:
-    resolution: {integrity: sha512-qyTx2aDFjEni4UnRWEME9ubd2Xc9c0zerTUl/ZinvD4QPsF0S7kJTV/Es/lPCTkNX6smyYar+z/n8Cl6pFr8yQ==}
+  /electron-to-chromium/1.4.310:
+    resolution: {integrity: sha512-/xlATgfwkm5uDDwLw5nt/MNEf7c1oazLURMZLy39vOioGYyYzLWIDT8fZMJak6qTiAJ7udFTy7JG7ziyjNutiA==}
 
   /emmet/2.3.6:
     resolution: {integrity: sha512-pLS4PBPDdxuUAmw7Me7+TcHbykTsBKN/S9XJbUOMFQrNv9MoshzyMFK/R57JBm94/6HSL4vHnDeEmxlC82NQ4A==}
@@ -2431,8 +2431,8 @@ packages:
       stop-iteration-iterator: 1.0.0
     dev: true
 
-  /es-module-lexer/1.1.1:
-    resolution: {integrity: sha512-n3ruqU8Te7I5prBd6d0darM8ajFuVNhLWvgo04hN7goWSaSrxe7ENOZitac7akN0A2o+8fMomBDsNPvW/eE3CQ==}
+  /es-module-lexer/1.2.0:
+    resolution: {integrity: sha512-2BMfqBDeVCcOlLaL1ZAfp+D868SczNpKArrTM3dhpd7dK/OVlogzY15qpUngt+LMTq5UC/csb9vVQAgupucSbA==}
     dev: false
 
   /es-set-tostringtag/2.0.1:
