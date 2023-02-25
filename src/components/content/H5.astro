@@ -3,9 +3,9 @@ import { HeadingLink } from './HeadingLink'
 const { id } = Astro.props
 ---
 
-<div class="mt-[2em] scroll-mt-20">
+<div class="mt-[2em]">
   <HeadingLink id={id} client:only="react" />
-  <h5 id={id} class="mt-0">
+  <h5 id={id} class="mt-0 scroll-mt-24">
     <slot />
   </h5>
 </div>
