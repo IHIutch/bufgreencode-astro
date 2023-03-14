@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react'
+import { type ReactNode, useState } from 'react'
 import { DocSearchModal } from '@docsearch/react'
 import { Search } from 'lucide-react'
 import type {

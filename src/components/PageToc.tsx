@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { MouseEvent, useEffect, useState } from 'react'
+import { type MouseEvent, useEffect, useState } from 'react'
 
 export default function PageToc({ headings }: { headings: any[] }) {
   const [currentHeading, setCurrentHeading] = useState({
@@ -11,7 +11,7 @@ export default function PageToc({ headings }: { headings: any[] }) {
     const setCurrent: IntersectionObserverCallback = (entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          const { id } = entry.target
+          // const { id } = entry.target
           // if (id === onThisPageID) continue
           setCurrentHeading({
             slug: entry.target.id,
@@ -45,7 +45,7 @@ export default function PageToc({ headings }: { headings: any[] }) {
 
   const onLinkClick = (e: MouseEvent) => {
     setCurrentHeading({
-      slug: e.currentTarget.getAttribute('href')!.replace('#', ''),
+      slug: (e.currentTarget.getAttribute('href') || '').replace('#', ''),
       text: e.currentTarget.textContent || '',
     })
   }
