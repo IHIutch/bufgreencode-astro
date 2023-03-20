@@ -45,7 +45,7 @@
     "cssnano": "^5.1.15",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.7.0",
-    "eslint-plugin-astro": "^0.24.0",
+    "eslint-plugin-astro": "^0.26.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-tailwindcss": "^3.10.1",
