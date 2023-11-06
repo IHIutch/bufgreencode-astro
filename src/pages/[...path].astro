@@ -1,13 +1,13 @@
 ---
-import PageToc from '@components/PageToc'
-import SidebarLayout from '@layouts/SidebarLayout.astro'
+import PageToc from '@components/page-toc'
+import SidebarLayout from '@layouts/sidebar-layout.astro'
 import { getCollection } from 'astro:content'
-import H2 from '@components/content/H2.astro'
-import H3 from '@components/content/H3.astro'
-import H4 from '@components/content/H4.astro'
-import H5 from '@components/content/H5.astro'
-import H6 from '@components/content/H6.astro'
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro'
+import H2 from '@components/content/h2.astro'
+import H3 from '@components/content/h3.astro'
+import H4 from '@components/content/h4.astro'
+import H5 from '@components/content/h5.astro'
+import H6 from '@components/content/h6.astro'
 
 // 1. Generate a new path for every collection entry
 export const getStaticPaths = (async () => {

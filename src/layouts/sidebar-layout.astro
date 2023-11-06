@@ -1,9 +1,9 @@
 ---
-import NavbarComponent from '@components/NavbarComponent.astro'
+import NavbarComponent from '@components/navbar.astro'
 import { getCollection } from 'astro:content'
 import { ViewTransitions } from 'astro:transitions'
-import SubnavComponent from '@components/SubnavComponent'
-import ArticlesAccordion from '@components/ArticlesAccordion'
+import SubnavComponent from '@components/subnav'
+import ArticlesAccordion from '@components/asrticles-accordion'
 
 const allArticles = await getCollection('articles')
 const pathname = Astro.url.pathname
