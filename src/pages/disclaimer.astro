@@ -1,14 +1,43 @@
 ---
 import SidebarLayout from '@layouts/global-layout.astro'
+import { css } from '../../styled-system/css'
+import { prose } from '../../styled-system/recipes'
 ---
 
 <SidebarLayout pageTitle="Disclaimer">
-  <div class="my-12 w-full px-4 md:px-8 xl:w-3/4">
-    <div class="mx-auto w-full max-w-prose">
-      <h1 class="mb-6 text-5xl font-medium leading-tight">Disclaimer</h1>
-      <div class="prose">
-        <p class="lead">
-          This site is an <span class="font-semibold">unofficial</span>{' '}
+  <div
+    class={css({
+      my: '12',
+      w: { base: 'full', xl: 'calc(100% - token(sizes.80))' },
+      px: { base: '4', md: '8' },
+    })}
+  >
+    <div
+      class={css({
+        maxW: 'prose',
+        mx: { base: 'auto', md: '0', xl: 'auto' },
+      })}
+    >
+      <h1
+        class={css({
+          mb: '6',
+          fontSize: '5xl',
+          fontWeight: 'medium',
+          letterSpacing: 'tight',
+        })}
+      >
+        Disclaimer
+      </h1>
+      <div class={prose()}>
+        <p
+          class={css({
+            fontSize: 'xl',
+            lineHeight: 'relaxed',
+            color: 'gray.600',
+          })}
+        >
+          This site is an{' '}
+          <span class={css({ fontWeight: 'semibold' })}> unofficial</span>{' '}
            digitisation for the Buffalo Green Code. This is an open source
           project and is not affiliated with the City of Buffalo.
         </p>
@@ -18,21 +47,29 @@ import SidebarLayout from '@layouts/global-layout.astro'
             href="https://www.buffalony.gov/1224/Using-the-Unified-Development-Ordinance"
             target="_blank"
             rel="noreferrer"
+            class={css({
+              color: 'green.700',
+              textDecoration: 'underline',
+            })}
           >
-            City of Buffalo's website.
+            City of Buffalo&apos;s website.
           </a>
         </p>
         <p>
-          We've done our best to make this site as accurate as possible in order
-          to make it easier to search and find important information. Any
+          We&apos;ve done our best to make this site as accurate as possible in
+          order to make it easier to search and find important information. Any
           inaccurate or or out of date information is completely unintentional.
         </p>
         <p>
           If you find any errors or inaccuracies,{' '}
           <a
-            href="https://forms.reform.app/szenkB/buffalo-green-code/sxml6n"
+            href="https://github.com/IHIutch/bufgreencode_v2/issues/new?assignees=&labels=&projects=&template=found-an-issue.yml"
             target="_blank"
             rel="noreferrer"
+            class={css({
+              color: 'green.700',
+              textDecoration: 'underline',
+            })}
           >
             please let us know
           </a>

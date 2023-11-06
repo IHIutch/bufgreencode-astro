@@ -1,12 +1,21 @@
 ---
+import { css } from '../../../styled-system/css'
 import { HeadingLink } from './heading-link'
 
 const { id } = Astro.props
 ---
 
-<div class="mt-[2em]">
-  <HeadingLink id={id} client:only="react" />
-  <h4 id={id} class="mt-0 scroll-mt-24">
+<div class={css({ mt: '2em' })}>
+  <HeadingLink id={id} client:load />
+  <h4
+    id={id}
+    class={css({
+      mt: '0',
+      scrollMarginTop: '16',
+      lineHeight: 'tight',
+      fontWeight: 'medium',
+    })}
+  >
     <slot />
   </h4>
 </div>

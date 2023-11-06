@@ -1,14 +1,41 @@
 ---
+import { css, cx } from '../../../styled-system/css'
+
 const { caption } = Astro.props
 ---
 
-<figure class="not-prose mb-4">
-  <div class="inline-flex w-full rounded border p-1">
+<figure
+  class={cx(
+    'not-prose',
+    css({
+      mb: '4',
+    }),
+  )}
+>
+  <div
+    class={css({
+      display: 'inline-flex',
+      w: 'full',
+      rounded: 'md',
+      borderWidth: '1px',
+      borderColor: 'gray.200',
+      p: '1',
+      overflow: 'hidden',
+    })}
+  >
     <slot />
   </div>
   {
     caption ? (
-      <figcaption class="mt-1 text-sm text-gray-700">{caption}</figcaption>
+      <figcaption
+        class={css({
+          mt: '1',
+          fontSize: 'sm',
+          color: 'gray.600',
+        })}
+      >
+        {caption}
+      </figcaption>
     ) : null
   }
 </figure>

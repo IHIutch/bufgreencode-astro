@@ -3,8 +3,9 @@ import NavbarComponent from '@components/navbar.astro'
 import { getCollection } from 'astro:content'
 import { ViewTransitions } from 'astro:transitions'
 import SubnavComponent from '@components/subnav'
-import ArticlesAccordion from '@components/asrticles-accordion'
+import ArticlesAccordion from '@components/articles-accordion'
 import { SEO } from 'astro-seo'
+import { css } from '../../styled-system/css'
 
 interface Props {
   pageTitle?: string
@@ -24,7 +25,7 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
 ---
 
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en" class={css({ h: 'full' })}>
   <head>
     <SEO
       charset="utf-8"
@@ -68,24 +69,75 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
     />
     <ViewTransitions />
   </head>
-  <body>
-    <div class="antialiased">
-      <div class="fixed top-0 z-10 w-full">
-        <NavbarComponent />
-        <SubnavComponent client:load>
-          <ArticlesAccordion
-            activePath={pathname}
-            articles={allArticles}
-            client:load
-          />
-        </SubnavComponent>
-      </div>
-      <div class="mx-auto flex max-w-screen-2xl">
+  <body
+    class={css({
+      // fontSmoothing: 'antialiased',
+      h: 'full',
+      pt: {
+        base: '14',
+        lg: '16',
+      },
+    })}
+  >
+    <div
+      class={css({
+        pos: 'fixed',
+        top: '0',
+        zIndex: '4',
+        w: 'full',
+      })}
+    >
+      <NavbarComponent transition:persist />
+      <SubnavComponent client:load>
+        <ArticlesAccordion
+          activePath={pathname}
+          articles={allArticles}
+          client:load
+        />
+      </SubnavComponent>
+    </div>
+    <div
+      class={css({
+        h: 'full',
+        overflowY: 'auto',
+      })}
+    >
+      <div
+        class={css({
+          maxWidth: 'breakpoint-2xl',
+          mx: 'auto',
+        })}
+      >
         <div
-          class="fixed top-0 hidden h-full flex-shrink-0 pt-16 md:block md:w-72 2xl:w-80"
+          class={css({
+            pos: 'fixed',
+            top: '0',
+            display: {
+              base: 'none',
+              lg: 'block',
+            },
+            h: 'full',
+            pt: '16',
+            w: {
+              lg: '72',
+              '2xl': '80',
+            },
+          })}
         >
-          <nav class="sticky h-full overflow-y-auto border-r">
-            <div class="py-8 group">
+          <nav
+            class={css({
+              pos: 'sticky',
+              h: 'full',
+              overflowY: 'auto',
+              borderRightColor: 'gray.200',
+              borderRightWidth: '1px',
+            })}
+          >
+            <div
+              class={css({
+                py: '8',
+              })}
+            >
               <ArticlesAccordion
                 activePath={pathname}
                 articles={allArticles}
@@ -95,15 +147,9 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
             </div>
           </nav>
         </div>
-        <div class="w-full pt-20 md:ml-72 md:pt-16 2xl:ml-80">
-          <div
-            class="flex position-absolute w-full transition-all duration-200"
-          >
-            <main class="w-full">
-              <slot />
-            </main>
-          </div>
-        </div>
+        <main class={css({ pl: { lg: '72', '2xl': '80' } })}>
+          <slot />
+        </main>
       </div>
     </div>
   </body>

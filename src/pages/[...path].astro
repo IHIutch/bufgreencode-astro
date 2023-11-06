@@ -8,6 +8,8 @@ import H3 from '@components/content/h3.astro'
 import H4 from '@components/content/h4.astro'
 import H5 from '@components/content/h5.astro'
 import H6 from '@components/content/h6.astro'
+import { css, cx } from '../../styled-system/css'
+import { customProse, prose } from '../../styled-system/recipes'
 
 export const getStaticPaths = (async () => {
   const allArticles = await getCollection('articles')
@@ -25,18 +27,50 @@ const { Content, headings } = await entry.render()
 ---
 
 <SidebarLayout pageTitle={entry.data.title}>
-  <div class="flex">
-    <div class="my-12 w-full px-4 md:px-8 xl:w-[calc(100%-20rem)]">
-      <div class="max-w-prose xl:mx-auto">
-        <h1 class="mb-2 text-5xl font-medium leading-tight">
+  <div
+    class={css({
+      display: 'flex',
+      position: 'relative',
+    })}
+  >
+    <div
+      class={css({
+        my: '12',
+        w: { base: 'full', xl: 'calc(100% - token(sizes.80))' },
+        px: { base: '4', md: '8' },
+      })}
+    >
+      <div
+        class={css({
+          maxW: 'prose',
+          mx: { base: 'auto', lg: '0', xl: 'auto' },
+        })}
+      >
+        <h1
+          class={css({
+            mb: '2',
+            fontSize: { base: '4xl', sm: '5xl' },
+            fontWeight: 'medium',
+            letterSpacing: 'tight',
+            lineHeight: 'tight',
+          })}
+        >
           {entry.data.title}
         </h1>
         {
           entry.data.lead ? (
-            <p class="text-lg text-gray-700">{entry.data.lead}</p>
+            <p
+              class={css({
+                fontSize: 'xl',
+                lineHeight: 'relaxed',
+                color: 'gray.700',
+              })}
+            >
+              {entry.data.lead}
+            </p>
           ) : null
         }
-        <div class="page-content prose">
+        <div class={cx(prose(), customProse())}>
           <Content
             components={{
               h2: H2,
@@ -49,23 +83,45 @@ const { Content, headings } = await entry.render()
         </div>
       </div>
     </div>
-    <aside class="hidden shrink-0 lg:w-80 xl:block">
-      {
-        headings?.length > 0 ? (
-          <div class="fixed top-0 h-screen pt-16">
-            <div class="h-full overflow-y-auto">
-              <div class="my-12 pr-4">
-                <div class="mb-2">
-                  <span class="text-xs font-bold uppercase tracking-wider text-gray-500">
-                    On this Page
-                  </span>
+    {
+      headings?.length > 0 ? (
+        <aside
+          class={css({
+            pos: 'fixed',
+            top: '16',
+            bottom: '0',
+            right: '0',
+            display: {
+              base: 'none',
+              xl: 'block',
+            },
+            flexShrink: '0',
+            w: '80',
+          })}
+        >
+          <div class={css({ pos: 'fixed', top: '0', h: 'screen', pt: '16' })}>
+            <div class={css({ h: 'full', overflowY: 'auto' })}>
+              <div class={css({ mt: '12', mb: '12', pr: '4' })}>
+                <div class={css({ mb: '2' })}>
+                  <h3
+                    id="toc-heading"
+                    class={css({
+                      fontSize: 'xs',
+                      fontWeight: 'bold',
+                      letterSpacing: 'wider',
+                      color: 'gray.500',
+                      textTransform: 'uppercase',
+                    })}
+                  >
+                    Page Contents
+                  </h3>
                 </div>
                 <PageToc headings={headings} client:load />
               </div>
             </div>
           </div>
-        ) : null
-      }
-    </aside>
+        </aside>
+      ) : null
+    }
   </div>
 </SidebarLayout>

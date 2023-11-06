@@ -2,7 +2,7 @@
 module.exports = {
   singleQuote: true,
   semi: false,
-  plugins: ['prettier-plugin-tailwindcss', 'prettier-plugin-astro'],
+  plugins: ['prettier-plugin-astro'],
   overrides: [
     {
       files: '*.astro',

@@ -6,19 +6,47 @@ import type {
   StoredDocSearchHit,
 } from '@docsearch/react/dist/esm/types'
 import { env } from 'env-vars'
+import { css } from '../../styled-system/css'
+import { square } from '../../styled-system/patterns'
 
 export default function SearchComponent() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="h-full w-full">
+    <>
       <button
-        className="h-full w-full rounded-lg border bg-gray-100 px-4 py-2 text-left text-gray-500 transition-colors"
+        className={css({
+          h: { base: '10', lg: '12' },
+          flexGrow: '1',
+          rounded: 'lg',
+          borderWidth: '1px',
+          borderColor: 'gray.200',
+          bg: {
+            base: 'gray.50',
+            _hover: 'gray.100',
+          },
+          px: '4',
+          textAlign: 'left',
+          color: 'gray.500',
+          transition: 'background-color ease 0.2s',
+          cursor: 'pointer',
+        })}
         onClick={() => setIsOpen(true)}
       >
-        <div className="flex items-center">
-          <Search className="h-4 w-4" />
-          <span className="ml-2">Search the code...</span>
+        <div
+          className={css({
+            display: 'flex',
+            alignItems: 'center',
+          })}
+        >
+          <Search className={square({ size: '4' })} />
+          <span
+            className={css({
+              ml: '2',
+            })}
+          >
+            Search the Green Code...
+          </span>
         </div>
       </button>
       {isOpen ? (
@@ -28,16 +56,15 @@ export default function SearchComponent() {
           indexName={env.PUBLIC_ALGOLIA_INDEX_NAME}
           apiKey={env.PUBLIC_ALGOLIA_API_KEY}
           onClose={() => setIsOpen(false)}
-          placeholder="Search the docs..."
+          placeholder="Search the Green Code..."
           hitComponent={Hit}
           transformItems={(items) => {
             return items.map((item, index) => {
               const a = document.createElement('a')
               a.href = item.url
 
-              if (item.hierarchy?.lvl0) {
+              if (item.hierarchy?.lvl0)
                 item.hierarchy.lvl0 = item.hierarchy.lvl0.replace(/&amp;/g, '&')
-              }
 
               if (item._highlightResult?.hierarchy?.lvl0?.value) {
                 item._highlightResult.hierarchy.lvl0.value =
@@ -65,7 +92,7 @@ export default function SearchComponent() {
           }}
         />
       ) : null}
-    </div>
+    </>
   )
 }
 
@@ -79,7 +106,6 @@ function Hit({
   return (
     <a
       href={hit.url}
-      // className={clsx({
       //   'DocSearch-Hit--Result': hit?.__is_result?.(),
       //   // 'DocSearch-Hit--Parent': hit.__is_parent?.(),
       //   // 'DocSearch-Hit--Child': hit.__is_child?.(),

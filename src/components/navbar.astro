@@ -1,52 +1,181 @@
 ---
 import { ExternalLink } from 'lucide-react'
+import { css } from '../../styled-system/css'
+import { square } from '../../styled-system/patterns'
 import SearchComponent from './search'
 ---
 
 <nav
-  class="relative inset-x-0 z-20 flex h-16 flex-shrink-0 border-b border-gray-200 bg-white"
+  class={css({
+    pos: 'relative',
+    insetX: '0',
+    display: 'flex',
+    h: { base: '14', lg: '16' },
+    flexShrink: '0',
+    borderBottomWidth: '1px',
+    borderBottomColor: 'gray.200',
+    bg: 'white',
+  })}
 >
-  <div class="relative mx-auto w-full max-w-screen-2xl">
-    <div class="flex h-full items-center">
-      <div class="h-full w-16 flex-shrink-0 pl-4 md:w-40 lg:w-72 2xl:w-80">
-        <div class="flex h-full items-center">
-          <a href="/" class="block h-full w-full py-2 lg:mr-4">
+  <div
+    class={css({
+      pos: 'relative',
+      mx: 'auto',
+      w: 'full',
+      maxW: 'breakpoint-2xl',
+    })}
+  >
+    <div
+      class={css({
+        display: 'flex',
+        h: 'full',
+        alignItems: 'center',
+      })}
+    >
+      <div
+        class={css({
+          h: 'full',
+          flexShrink: '0',
+          w: {
+            base: '16',
+            md: '40',
+            lg: '72',
+            '2xl': '80',
+          },
+          pl: '4',
+        })}
+      >
+        <div
+          class={css({
+            display: 'flex',
+            h: 'full',
+            alignItems: 'center',
+          })}
+        >
+          <a
+            href="/"
+            class={css({
+              display: 'block',
+              h: 'full',
+              w: 'full',
+              py: '1',
+              lg: {
+                mr: '4',
+                py: '2',
+              },
+            })}
+          >
             <img
               src="/meta/bufgreencode-icon.svg"
               alt="Buffalo Green Code"
-              class="h-full w-auto md:hidden"
+              height={47}
+              width={47}
+              class={css({
+                h: 'full',
+                w: 'auto',
+                md: {
+                  display: 'none',
+                },
+              })}
             />
             <img
               src="/meta/bufgreencode-logo.svg"
               alt="Buffalo Green Code"
-              class="hidden h-full w-auto md:block"
+              height={47}
+              width={115}
+              class={css({
+                display: {
+                  base: 'none',
+                  md: 'block',
+                },
+                h: 'full',
+                w: 'auto',
+              })}
             />
           </a>
         </div>
       </div>
-      <div class="h-full w-full flex-1 px-4 md:block md:px-8 xl:w-3/4">
-        <div class="flex h-full w-full items-center py-2">
-          <SearchComponent client:only="react" />
+      <div
+        class={css({
+          h: 'full',
+          flex: '1',
+          px: '4',
+          md: {
+            display: 'block',
+            px: '8',
+          },
+          w: { base: 'full', xl: 'calc(100% - token(sizes.80))' },
+        })}
+      >
+        <div
+          class={css({
+            display: 'flex',
+            h: 'full',
+            alignItems: 'center',
+            mx: 'auto',
+            maxW: 'prose',
+            w: 'full',
+          })}
+        >
+          <SearchComponent client:load />
         </div>
       </div>
       <div
-        class="hidden h-full flex-shrink-0 items-center pr-4 text-sm font-medium md:flex lg:w-72 2xl:w-80"
+        class={css({
+          display: 'none',
+          h: 'full',
+          flexShrink: '0',
+          alignItems: 'center',
+          pr: '4',
+          fontSize: 'sm',
+          lineHeight: 'sm',
+          fontWeight: 'medium',
+          md: { display: 'flex' },
+          w: {
+            lg: '72',
+            '2xl': '80',
+          },
+        })}
       >
         <a
           href="/disclaimer/"
-          class="py-1 px-2 text-gray-700 hover:text-gray-900"
+          class={css({
+            ml: '-2',
+            px: '2',
+            py: '2',
+            color: {
+              base: 'gray.600',
+              _hover: 'gray.900',
+            },
+            fontWeight: 'medium',
+          })}
         >
           Disclaimer
         </a>
         <a
-          class="flex items-center py-1 px-2 text-gray-700 hover:text-gray-900"
+          class={css({
+            display: 'flex',
+            alignItems: 'center',
+            ml: '2',
+            px: '2',
+            py: '2',
+            color: {
+              base: 'gray.600',
+              _hover: 'gray.900',
+            },
+            fontWeight: 'medium',
+          })}
           href="https://github.com/IHIutch/bufgreencode_v2"
           target="_blank"
           rel="noreferrer"
         >
-          <span class="mr-1">Source Code</span>
+          <span
+            class={css({
+              mr: '1',
+            })}>Source Code</span
+          >
           <span>
-            <ExternalLink className="h-4 w-4" />
+            <ExternalLink className={square({ size: '3' })} />
           </span>
         </a>
       </div>
