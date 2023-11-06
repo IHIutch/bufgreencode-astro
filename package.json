@@ -47,6 +47,6 @@
     "prettier-plugin-tailwindcss": "^0.5.6"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   }
 }
