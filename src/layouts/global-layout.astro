@@ -4,14 +4,68 @@ import { getCollection } from 'astro:content'
 import { ViewTransitions } from 'astro:transitions'
 import SubnavComponent from '@components/subnav'
 import ArticlesAccordion from '@components/asrticles-accordion'
+import { SEO } from 'astro-seo'
+
+interface Props {
+  pageTitle?: string
+}
 
 const allArticles = await getCollection('articles')
 const pathname = Astro.url.pathname
+
+const { pageTitle } = Astro.props
+
+const description = 'Buffalo Green Code Unified Development Ordinance'
+const image = new URL('meta/meta-img.jpeg', Astro.url.origin).href
+const siteTitle = 'Buffalo Green Code'
+const imageAlt =
+  'The city of buffalo overlayed with a semitransparent green background and the Buffalo Green Code logo in the middle'
+const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
 ---
 
 <!doctype html>
 <html lang="en" class="h-full">
   <head>
+    <SEO
+      charset="utf-8"
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title,
+          type: 'website',
+          image,
+        },
+        optional: {
+          description,
+        },
+        image: {
+          alt: imageAlt,
+          height: 600,
+          width: 1080,
+          type: 'image/jpeg',
+        },
+      }}
+      twitter={{
+        title,
+        description,
+        image,
+        imageAlt,
+        card: 'summary_large_image',
+      }}
+      extend={{
+        meta: [
+          {
+            name: 'viewport',
+            content: 'width=device-width,initial-scale=1',
+          },
+          {
+            name: 'google-site-verification',
+            content: '2uJ6hXsUDukLmTfNK7Y7jCmnaqyiLptsVDmZ2Ct7Zzk',
+          },
+        ],
+      }}
+    />
     <ViewTransitions />
   </head>
   <body>

@@ -1,6 +1,6 @@
 ---
 import PageToc from '@components/page-toc'
-import SidebarLayout from '@layouts/sidebar-layout.astro'
+import SidebarLayout from '@layouts/global-layout.astro'
 import { getCollection } from 'astro:content'
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro'
 import H2 from '@components/content/h2.astro'
@@ -9,7 +9,6 @@ import H4 from '@components/content/h4.astro'
 import H5 from '@components/content/h5.astro'
 import H6 from '@components/content/h6.astro'
 
-// 1. Generate a new path for every collection entry
 export const getStaticPaths = (async () => {
   const allArticles = await getCollection('articles')
 
@@ -21,15 +20,11 @@ export const getStaticPaths = (async () => {
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
-// 2. When it's time to render, you can get the entry directly from the prop
 const { entry } = Astro.props
 const { Content, headings } = await entry.render()
 ---
 
-<!-- <head>
-  <CustomSEO slug={entry.slug} pageTitle={entry.data.title} />
-</head> -->
-<SidebarLayout>
+<SidebarLayout pageTitle={entry.data.title}>
   <div class="flex">
     <div class="my-12 w-full px-4 md:px-8 xl:w-[calc(100%-20rem)]">
       <div class="max-w-prose xl:mx-auto">
