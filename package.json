@@ -39,7 +39,7 @@
     "@pandacss/dev": "^0.18.0",
     "@types/lodash": "^4.14.200",
     "@typescript-eslint/eslint-plugin": "^6.9.1",
-    "eslint": "^8.52.0",
+    "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-astro": "^0.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
