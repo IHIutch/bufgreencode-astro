@@ -2,56 +2,55 @@
 import NavbarComponent from '@components/NavbarComponent.astro'
 import { getCollection } from 'astro:content'
 import { ViewTransitions } from 'astro:transitions'
-import { groupBy } from 'lodash'
 import SubnavComponent from '@components/SubnavComponent'
 import ArticlesAccordion from '@components/ArticlesAccordion'
-
 
 const allArticles = await getCollection('articles')
 const pathname = Astro.url.pathname
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="h-full">
   <head>
     <ViewTransitions />
   </head>
   <body>
     <div class="antialiased">
-  <div class="fixed top-0 z-10 w-full">
-    <NavbarComponent />
-    <SubnavComponent client:load>
-      <ArticlesAccordion
-        activePath={pathname} 
-        articles={allArticles} 
-        client:load 
-      />
-    </SubnavComponent>
-  </div>
-  <div class="mx-auto flex max-w-screen-2xl">
-    <div
-      class="fixed top-0 hidden h-full flex-shrink-0 pt-16 md:block md:w-72 2xl:w-80"
-    >
-      <nav class="sticky h-full overflow-y-auto border-r">
-        <div class="py-8 group" >
+      <div class="fixed top-0 z-10 w-full">
+        <NavbarComponent />
+        <SubnavComponent client:load>
           <ArticlesAccordion
             activePath={pathname}
             articles={allArticles}
             client:load
-            transition:persist
           />
+        </SubnavComponent>
+      </div>
+      <div class="mx-auto flex max-w-screen-2xl">
+        <div
+          class="fixed top-0 hidden h-full flex-shrink-0 pt-16 md:block md:w-72 2xl:w-80"
+        >
+          <nav class="sticky h-full overflow-y-auto border-r">
+            <div class="py-8 group">
+              <ArticlesAccordion
+                activePath={pathname}
+                articles={allArticles}
+                client:load
+                transition:persist
+              />
+            </div>
+          </nav>
         </div>
-      </nav>
-    </div>
-    <div class="w-full pt-20 md:ml-72 md:pt-16 2xl:ml-80">
-      <div class="flex position-absolute w-full transition-all duration-200">
-        <main class="w-full">
-          <slot />
-        </main>
+        <div class="w-full pt-20 md:ml-72 md:pt-16 2xl:ml-80">
+          <div
+            class="flex position-absolute w-full transition-all duration-200"
+          >
+            <main class="w-full">
+              <slot />
+            </main>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
   </body>
 </html>

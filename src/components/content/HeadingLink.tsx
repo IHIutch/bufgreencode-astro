@@ -2,20 +2,23 @@ import { useState } from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { LinkIcon } from 'lucide-react'
 
-export const HeadingLink = ({ id }: { id: string }) => {
+export function HeadingLink({ id }: { id: string }) {
   const [isToolTipVisible, setIsToolTipVisible] = useState(false)
   const copyLinkToClipboard = () => {
     setIsToolTipVisible(true)
-    navigator.clipboard.writeText(
-      `${window.location.origin}${window.location.pathname}#${id}`
-    )
+    if (navigator.clipboard) {
+      navigator.clipboard
+        .writeText(`${window.location.origin}${window.location.pathname}#${id}`)
+        .catch((error) => {
+          console.error('Error copying text to clipboard:', error)
+        })
 
-    // if (process.env.NODE_ENV === 'production') {
-    //   window.fathom.trackGoal('RC2RYOND', 0)
-    // }
-    setTimeout(() => {
-      setIsToolTipVisible(false)
-    }, 800)
+      setTimeout(() => {
+        setIsToolTipVisible(false)
+      }, 1000)
+    } else {
+      console.error('Clipboard API is not available in this browser')
+    }
   }
 
   return (
@@ -25,7 +28,7 @@ export const HeadingLink = ({ id }: { id: string }) => {
           <button
             type="button"
             className="mb-1 flex items-center text-sm font-semibold text-green-600 underline transition-colors hover:text-green-700"
-            onClick={copyLinkToClipboard}
+            onClick={() => copyLinkToClipboard()}
           >
             <LinkIcon strokeWidth="3" className="h-[0.875rem] w-[0.875rem]" />
             <div>

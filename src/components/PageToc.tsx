@@ -1,7 +1,8 @@
+import type { MarkdownHeading } from 'astro'
 import clsx from 'clsx'
 import { type MouseEvent, useEffect, useState } from 'react'
 
-export default function PageToc({ headings }: { headings: any[] }) {
+export default function PageToc({ headings }: { headings: MarkdownHeading[] }) {
   const [currentHeading, setCurrentHeading] = useState({
     slug: headings[0].slug,
     text: headings[0].text,
@@ -31,7 +32,7 @@ export default function PageToc({ headings }: { headings: any[] }) {
 
     const headingsObserver = new IntersectionObserver(
       setCurrent,
-      observerOptions
+      observerOptions,
     )
 
     // Observe all the headings in the main page content.
@@ -64,7 +65,7 @@ export default function PageToc({ headings }: { headings: any[] }) {
                 'border-l-2 transition-all duration-200',
                 currentHeading.slug === heading.slug
                   ? ' border-green-700'
-                  : ' border-transparent'
+                  : ' border-transparent',
               )}
             >
               <div
@@ -72,7 +73,7 @@ export default function PageToc({ headings }: { headings: any[] }) {
                   'transition-all duration-200',
                   currentHeading.slug === heading.slug
                     ? 'translate-x-2'
-                    : 'translate-x-0'
+                    : 'translate-x-0',
                 )}
               >
                 <span
@@ -80,7 +81,7 @@ export default function PageToc({ headings }: { headings: any[] }) {
                     'font-medium',
                     currentHeading.slug === heading.slug
                       ? 'text-green-700'
-                      : 'text-gray-700'
+                      : 'text-gray-700',
                   )}
                 >
                   {heading.text}

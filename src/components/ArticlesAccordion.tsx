@@ -17,9 +17,9 @@ export default function ArticlesAccordion({
       (a, b) =>
         a.data.article_number +
         a.data.section_number -
-        (b.data.article_number + b.data.section_number)
+        (b.data.article_number + b.data.section_number),
     ),
-    'data.article_number'
+    'data.article_number',
   )
 
   const activeArticle = articles.find((a) => `/${a.slug}/` === activePath)
@@ -29,11 +29,11 @@ export default function ArticlesAccordion({
     const handleSetActivePath = () => {
       setLocalActivePath(window.location.pathname)
     }
-    document.addEventListener('astro:after-swap', handleSetActivePath);
+    document.addEventListener('astro:after-swap', handleSetActivePath)
     return () => {
-      document.removeEventListener('astro:after-swap', handleSetActivePath);
-    };
-  }, [activePath]);
+      document.removeEventListener('astro:after-swap', handleSetActivePath)
+    }
+  }, [activePath])
 
   return (
     <Accordion.Root
@@ -44,8 +44,8 @@ export default function ArticlesAccordion({
       <ul className="px-2 py-1 text-sm">
         {Object.keys(groupedArticles).map((articleNum, idx) => (
           <Accordion.Item asChild key={idx} value={articleNum}>
-            <li className="px-2 pb-1 group/item">
-              <Accordion.Trigger className="w-full text-left group">
+            <li className="group/item px-2 pb-1">
+              <Accordion.Trigger className="group w-full text-left">
                 <div className="flex w-full items-center text-gray-600 hover:text-gray-900">
                   <div className="grow px-2 py-1">
                     <span className="font-medium">
@@ -54,33 +54,27 @@ export default function ArticlesAccordion({
                     </span>
                   </div>
                   <div>
-                    <div
-                      className="duration-200 group-[[data-state=open]]/item:rotate-180 rotate-0"
-                    >
+                    <div className="rotate-0 duration-200 group-[[data-state=open]]/item:rotate-180">
                       <ChevronDown className="h-4 w-4" />
                     </div>
                   </div>
                 </div>
               </Accordion.Trigger>
-              <Accordion.Content
-                className='data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up overflow-hidden transition-all py-1 pl-3'
-              >
-                <ul
-                  className='border-l border-gray-300 pb-1 transition-all duration-200 group-[[data-state=open]]/item:translate-y-0 group-[[data-state=open]]/item:opacity-100 -translate-y-4 opacity-0'
-                >
+              <Accordion.Content className="overflow-hidden py-1 pl-3 transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                <ul className="-translate-y-4 border-l border-gray-300 pb-1 opacity-0 transition-all duration-200 group-[[data-state=open]]/item:translate-y-0 group-[[data-state=open]]/item:opacity-100">
                   {groupedArticles[articleNum].map((section, sIdx) => (
                     <li key={sIdx}>
                       <a
-                        aria-current={localActivePath === `/${section.slug}/` ? "page" : undefined}
-                        className='group/link block w-full truncate py-1.5 text-gray-600 hover:text-gray-900 -ml-px transition-all duration-200'
+                        aria-current={
+                          localActivePath === `/${section.slug}/`
+                            ? 'page'
+                            : undefined
+                        }
+                        className="group/link -ml-px block w-full truncate py-1.5 text-gray-600 transition-all duration-200 hover:text-gray-900"
                         href={`/${section.slug}/`}
                       >
-                        <div
-                          className='border-l-2 px-2 transition-all duration-200 group-[[aria-current=page]]/link:border-green-700 border-transparent'
-                        >
-                          <span
-                            className='truncate group-[[aria-current=page]]/link:text-green-700'
-                          >
+                        <div className="border-l-2 border-transparent px-2 transition-all duration-200 group-[[aria-current=page]]/link:border-green-700">
+                          <span className="truncate group-[[aria-current=page]]/link:text-green-700">
                             {section.data.article_number}.
                             {section.data.section_number} {section.data.title}
                           </span>
