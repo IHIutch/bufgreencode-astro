@@ -5,6 +5,7 @@ import type {
   InternalDocSearchHit,
   StoredDocSearchHit,
 } from '@docsearch/react/dist/esm/types'
+import { env } from 'env-vars'
 
 export default function SearchComponent() {
   const [isOpen, setIsOpen] = useState(false)
@@ -23,9 +24,9 @@ export default function SearchComponent() {
       {isOpen ? (
         <DocSearchModal
           initialScrollY={window.scrollY}
-          appId={import.meta.env.PUBLIC_ALGOLIA_APP_ID}
-          indexName={import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME}
-          apiKey={import.meta.env.PUBLIC_ALGOLIA_API_KEY}
+          appId={env.PUBLIC_ALGOLIA_APP_ID}
+          indexName={env.PUBLIC_ALGOLIA_INDEX_NAME}
+          apiKey={env.PUBLIC_ALGOLIA_API_KEY}
           onClose={() => setIsOpen(false)}
           placeholder="Search the docs..."
           hitComponent={Hit}
@@ -42,7 +43,7 @@ export default function SearchComponent() {
                 item._highlightResult.hierarchy.lvl0.value =
                   item._highlightResult.hierarchy.lvl0.value.replace(
                     /&amp;/g,
-                    '&'
+                    '&',
                   )
               }
 
@@ -68,13 +69,13 @@ export default function SearchComponent() {
   )
 }
 
-const Hit = ({
+function Hit({
   hit,
   children,
 }: {
   hit: InternalDocSearchHit | StoredDocSearchHit
   children: ReactNode
-}) => {
+}) {
   return (
     <a
       href={hit.url}
