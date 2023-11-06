@@ -1,31 +1,38 @@
 ---
-import PageToc from '@/components/PageToc'
-import SidebarLayout from '@/layouts/SidebarLayout.astro'
+import PageToc from '@components/PageToc'
+import SidebarLayout from '@layouts/SidebarLayout.astro'
 import { getCollection } from 'astro:content'
 import { SEO } from 'astro-seo'
-import H2 from '@/components/content/H2.astro'
-import H3 from '@/components/content/H3.astro'
-import H4 from '@/components/content/H4.astro'
-import H5 from '@/components/content/H5.astro'
-import H6 from '@/components/content/H2.astro'
-import CustomSEO from '@/components/CustomSEO.astro'
+import H2 from '@components/content/H2.astro'
+import H3 from '@components/content/H3.astro'
+import H4 from '@components/content/H4.astro'
+import H5 from '@components/content/H5.astro'
+import H6 from '@components/content/H2.astro'
+import CustomSEO from '@components/CustomSEO.astro'
+import type { GetStaticPaths } from 'astro'
+import type { InferGetStaticPropsType } from 'astro'
 
 // 1. Generate a new path for every collection entry
-export async function getStaticPaths() {
+export const getStaticPaths = (async () => {
   const allArticles = await getCollection('articles')
+
   return allArticles.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { path: entry.slug },
     props: { entry },
   }))
-}
+}) satisfies GetStaticPaths
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
 // 2. When it's time to render, you can get the entry directly from the prop
 const { entry } = Astro.props
-const { Content, components, headings } = await entry.render()
+const { Content, headings } = await entry.render()
 ---
 
-<head>
+
+<!-- <head>
   <CustomSEO slug={entry.slug} pageTitle={entry.data.title} />
-</head>
+</head> -->
 <SidebarLayout>
   <div class="flex">
     <div class="my-12 w-full px-4 md:px-8 xl:w-[calc(100%-20rem)]">
@@ -41,7 +48,6 @@ const { Content, components, headings } = await entry.render()
         <div class="page-content prose">
           <Content
             components={{
-              ...components,
               h2: H2,
               h3: H3,
               h4: H4,
@@ -63,7 +69,7 @@ const { Content, components, headings } = await entry.render()
                     On this Page
                   </span>
                 </div>
-                <PageToc headings={headings} client:visible />
+                <PageToc headings={headings} client:load />
               </div>
             </div>
           </div>

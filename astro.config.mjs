@@ -1,12 +1,24 @@
 import { defineConfig } from 'astro/config'
-
-// https://astro.build/config
+import mdx from '@astrojs/mdx'
+import tailwind from '@astrojs/tailwind'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
-import mdx from '@astrojs/mdx'
 
+// https://astro.build/config
 export default defineConfig({
-  output: 'static',
-  integrations: [react(), sitemap(), mdx()],
-  site: 'https://bufgreencode.com',
+  site: import.meta.env.DEV ? 'http://localhost:4321' : 'https://bufgreencode.com',
+  integrations: [
+    mdx(),
+    tailwind(),
+    react({
+      include: ['**/react/*'],
+    }),
+    sitemap(),
+  ],
+  vite: {
+    optimizeDeps: {
+      exclude: ['@napi-rs/image'],
+    },
+  },
+  trailingSlash: 'always',
 })

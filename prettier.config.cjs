@@ -1,4 +1,14 @@
+/** @type {import('prettier').Options} */
 module.exports = {
-  semi: false,
   singleQuote: true,
+  semi: false,
+  plugins: ['prettier-plugin-tailwindcss', 'prettier-plugin-astro'],
+  overrides: [
+    {
+      files: '*.astro',
+      options: {
+        parser: 'astro',
+      },
+    },
+  ],
 }

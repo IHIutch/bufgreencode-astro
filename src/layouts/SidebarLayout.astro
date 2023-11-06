@@ -1,20 +1,31 @@
 ---
-import NavbarComponent from '@/components/NavbarComponent.astro'
-import SubnavComponent from '@/components/SubnavComponent'
-import ArticlesAccordion from '@/components/ArticlesAccordion'
+import NavbarComponent from '@components/NavbarComponent.astro'
 import { getCollection } from 'astro:content'
+import { ViewTransitions } from 'astro:transitions'
+import { groupBy } from 'lodash'
+import SubnavComponent from '@components/SubnavComponent'
+import ArticlesAccordion from '@components/ArticlesAccordion'
 
-import '../../styles/main.scss'
 
 const allArticles = await getCollection('articles')
-const { slug } = Astro.params
+const pathname = Astro.url.pathname
 ---
 
-<div class="antialiased">
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <ViewTransitions />
+  </head>
+  <body>
+    <div class="antialiased">
   <div class="fixed top-0 z-10 w-full">
     <NavbarComponent />
-    <SubnavComponent client:only>
-      <ArticlesAccordion activeSlug={slug} articles={allArticles} client:only />
+    <SubnavComponent client:load>
+      <ArticlesAccordion
+        activePath={pathname} 
+        articles={allArticles} 
+        client:load 
+      />
     </SubnavComponent>
   </div>
   <div class="mx-auto flex max-w-screen-2xl">
@@ -22,11 +33,12 @@ const { slug } = Astro.params
       class="fixed top-0 hidden h-full flex-shrink-0 pt-16 md:block md:w-72 2xl:w-80"
     >
       <nav class="sticky h-full overflow-y-auto border-r">
-        <div class="py-8">
+        <div class="py-8 group" >
           <ArticlesAccordion
-            activeSlug={slug}
+            activePath={pathname}
             articles={allArticles}
-            client:only
+            client:load
+            transition:persist
           />
         </div>
       </nav>
@@ -40,3 +52,6 @@ const { slug } = Astro.params
     </div>
   </div>
 </div>
+
+  </body>
+</html>
