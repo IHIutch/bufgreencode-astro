@@ -20,6 +20,9 @@ export default defineConfig({
         customProse: customProseRecipe,
       },
       tokens: {
+        fonts: {
+          inter: { value: "'Inter Variable', sans-serif" },
+        },
         lineHeights: {
           3: { value: '0.75rem' },
           4: { value: '1rem' },

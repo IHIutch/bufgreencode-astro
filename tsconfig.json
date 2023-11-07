@@ -16,5 +16,5 @@
     },
     "strictNullChecks": true
   },
-  "include": ["src", "**/*.ts", "styled-system"]
+  "include": ["src", "**/*.ts", "**/*.tsx", "styled-system"]
 }

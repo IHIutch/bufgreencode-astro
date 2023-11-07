@@ -7,14 +7,7 @@ import pandacss from '@pandacss/astro'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bufgreencode.com',
-  integrations: [
-    mdx(),
-    react({
-      include: ['**/react/*'],
-    }),
-    sitemap(),
-    pandacss(),
-  ],
+  integrations: [mdx(), react(), sitemap(), pandacss()],
   vite: {
     optimizeDeps: {
       exclude: ['@napi-rs/image'],

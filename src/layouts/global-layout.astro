@@ -6,6 +6,7 @@ import SubnavComponent from '@components/subnav'
 import ArticlesAccordion from '@components/articles-accordion'
 import { SEO } from 'astro-seo'
 import { css } from '../../styled-system/css'
+import '@fontsource-variable/inter'
 
 interface Props {
   pageTitle?: string
@@ -77,6 +78,7 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
         base: '14',
         lg: '16',
       },
+      fontFamily: 'inter',
     })}
   >
     <div
