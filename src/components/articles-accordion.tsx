@@ -1,11 +1,6 @@
 import * as React from 'react'
 import groupBy from 'lodash/groupBy'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@ark-ui/react'
+import { Accordion } from '@ark-ui/react'
 import { ChevronDown } from 'lucide-react'
 import type { CollectionEntry } from 'astro:content'
 import { css, cx } from '../../styled-system/css'
@@ -43,7 +38,7 @@ export default function ArticlesAccordion({
   }, [activePath])
 
   return (
-    <Accordion
+    <Accordion.Root
       multiple
       defaultValue={activeArticleNum ? [activeArticleNum] : []}
     >
@@ -55,14 +50,14 @@ export default function ArticlesAccordion({
         })}
       >
         {Object.keys(groupedArticles).map((articleNum, idx) => (
-          <AccordionItem key={idx} value={articleNum}>
+          <Accordion.Item key={idx} value={articleNum}>
             <li
               className={css({
                 px: '2',
                 pb: '1',
               })}
             >
-              <AccordionTrigger
+              <Accordion.Trigger
                 className={cx(
                   'group',
                   css({
@@ -110,38 +105,47 @@ export default function ArticlesAccordion({
                     </div>
                   </div>
                 </div>
-              </AccordionTrigger>
-              <AccordionContent
-                className={css({
-                  display: 'grid',
-                  pl: '3',
-                  _motionSafe: {
-                    transitionProperty:
-                      'grid-template-rows, padding-top, padding-bottom',
-                    transitionDuration: '0.2s',
-                    transitionTimingFunction: 'ease',
-                  },
-                  _open: {
-                    gridTemplateRows: '1fr',
-                    pt: '1',
-                    pb: '2',
-                  },
-                  _closed: {
-                    gridTemplateRows: '0fr',
-                    visibility: 'hidden',
-                  },
-                })}
+              </Accordion.Trigger>
+              <Accordion.Content
+                className={cx(
+                  'group',
+                  css({
+                    display: 'grid',
+                    pl: '3',
+                    _motionSafe: {
+                      transitionProperty:
+                        'grid-template-rows, padding-top, padding-bottom',
+                      transitionDuration: '0.2s',
+                      transitionTimingFunction: 'ease',
+                    },
+                    _open: {
+                      gridTemplateRows: '1fr',
+                      pt: '1',
+                      pb: '2',
+                    },
+                    _closed: {
+                      gridTemplateRows: '0fr',
+                      // visibility: 'hidden',
+                    },
+                  }),
+                )}
               >
                 <ul
                   className={css({
                     overflow: 'hidden',
+                    // _motionSafe: {
+                    //   '.group:is(data-state=open):&': {
+                    //     animationName: 'enter',
+                    //     '--enter-opacity': '0.4',
+                    //     '--enter-translate-y': 'token(spacing.-2)',
+                    //   },
+                    //   '.group:is(data-state=closed):&': {
+                    //     animationName: 'exit',
+                    //     '--exit-opacity': '0.4',
+                    //     '--exit-translate-y': 'token(spacing.-2)',
+                    //   },
+                    // },
                   })}
-                  // animate({
-                  //   animationName: 'enter',
-                  //   translateY: 'token(spacing.-2)',
-                  //   opacity: '0.4',
-                  //   animationDuration: 'token(durations.normal)',
-                  // }),
                 >
                   {groupedArticles[articleNum].map((section, sIdx) => (
                     <li
@@ -196,11 +200,11 @@ export default function ArticlesAccordion({
                     </li>
                   ))}
                 </ul>
-              </AccordionContent>
+              </Accordion.Content>
             </li>
-          </AccordionItem>
+          </Accordion.Item>
         ))}
       </ul>
-    </Accordion>
+    </Accordion.Root>
   )
 }

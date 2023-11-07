@@ -1,11 +1,5 @@
 import { LinkIcon } from 'lucide-react'
-import {
-  Portal,
-  Tooltip,
-  TooltipContent,
-  TooltipPositioner,
-  TooltipTrigger,
-} from '@ark-ui/react'
+import { Portal, Tooltip } from '@ark-ui/react'
 import { css } from '../../../styled-system/css'
 import { square } from '../../../styled-system/patterns'
 
@@ -30,8 +24,8 @@ export function HeadingLink({ id }: { id: string }) {
 
   return (
     <div className={css({ mt: '2em' })}>
-      <Tooltip openDelay={0} positioning={{ placement: 'top' }}>
-        <TooltipTrigger
+      <Tooltip.Root openDelay={0} positioning={{ placement: 'top' }}>
+        <Tooltip.Trigger
           className={css({
             display: 'flex',
             alignItems: 'center',
@@ -51,10 +45,10 @@ export function HeadingLink({ id }: { id: string }) {
           <div>
             <span className={css({ ml: '1' })}>Share Section</span>
           </div>
-        </TooltipTrigger>
+        </Tooltip.Trigger>
         <Portal>
-          <TooltipPositioner>
-            <TooltipContent
+          <Tooltip.Positioner>
+            <Tooltip.Content
               className={css({
                 alignItems: 'center',
                 rounded: 'md',
@@ -71,21 +65,21 @@ export function HeadingLink({ id }: { id: string }) {
                   _open: {
                     animationName: 'enter',
                     '--enter-opacity': '0',
-                    '--enter-translate-y': 'token(sizes.2)',
+                    '--enter-translate-y': 'token(spacing.2)',
                   },
                   _closed: {
                     animationName: 'exit',
                     '--exit-opacity': '0',
-                    // '--exit-translate-y': 'token(sizes.1)',
+                    // '--exit-translate-y': 'token(spacing.1)',
                   },
                 },
               })}
             >
               Click to copy link
-            </TooltipContent>
-          </TooltipPositioner>
+            </Tooltip.Content>
+          </Tooltip.Positioner>
         </Portal>
-      </Tooltip>
+      </Tooltip.Root>
     </div>
   )
 }
