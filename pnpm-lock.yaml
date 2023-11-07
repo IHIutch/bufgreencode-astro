@@ -18,7 +18,7 @@ dependencies:
     specifier: ^3.3.3
     version: 3.5.2
   '@docsearch/react':
-    specifier: ^3.3.3
+    specifier: ^3.5.2
     version: 3.5.2(@algolia/client-search@4.20.0)(@types/react@18.2.36)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.9.0)
   '@fontsource-variable/inter':
     specifier: ^5.0.15

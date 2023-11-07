@@ -1,5 +1,5 @@
 import { type ReactNode, useState } from 'react'
-import { DocSearchModal } from '@docsearch/react'
+import * as DocSearch from '@docsearch/react'
 import { Search } from 'lucide-react'
 import type {
   InternalDocSearchHit,
@@ -51,7 +51,7 @@ export default function SearchComponent() {
         </div>
       </button>
       {isOpen ? (
-        <DocSearchModal
+        <DocSearch.DocSearchModal
           initialScrollY={window.scrollY}
           appId={env.PUBLIC_ALGOLIA_APP_ID}
           indexName={env.PUBLIC_ALGOLIA_INDEX_NAME}
