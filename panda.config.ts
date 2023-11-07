@@ -41,22 +41,6 @@ export default defineConfig({
         },
       },
       keyframes: {
-        tooltipFadeIn: {
-          '0%': { opacity: '0', scale: '0.9' },
-          '100%': { opacity: '1', scale: '1' },
-        },
-        tooltipFadeOut: {
-          '0%': { opacity: '1', scale: '1' },
-          '100%': { opacity: '0', scale: '0.9' },
-        },
-        tooltipSlideIn: {
-          '0%': { transform: 'translateY(4px)' },
-          '100%': { transform: 'translateY(0)' },
-        },
-        tooltipSlideOut: {
-          '0%': { transform: 'translateY(0)' },
-          '100%': { transform: 'translateY(4px)' },
-        },
         enter: {
           from: {
             opacity: 'var(--enter-opacity, 1)',
@@ -70,6 +54,14 @@ export default defineConfig({
             transform:
               'translate3d(var(--exit-translate-x, 0), var(--exit-translate-y, 0), 0) scale3d(var(--exit-scale, 1), var(--exit-scale, 1), var(--exit-scale, 1)) rotate(var(--exit-rotate, 0))',
           },
+        },
+        accordionOpen: {
+          from: { height: '0' },
+          to: { height: 'var(--accordion-height, 0)' },
+        },
+        accordionClosed: {
+          from: { height: 'var(--accordion-height, 0)' },
+          to: { height: '0' },
         },
       },
     },

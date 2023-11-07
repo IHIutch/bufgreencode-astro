@@ -62,17 +62,22 @@ export function HeadingLink({ id }: { id: string }) {
               zIndex: '10',
               position: 'relative',
               lineHeight: 'loose',
-              '&[data-state=open]': {
-                animation:
-                  'tooltipFadeIn 0.1s ease-out, tooltipSlideIn 0.15s ease-out',
-              },
-              '&[data-state=closed]': {
-                animation:
-                  'tooltipFadeOut 0.1s ease-in, tooltipSlideOut 0.1s ease-in',
+              _motionSafe: {
+                animationDuration: 'token(durations.fast)',
+                '&[data-state=delayed-open]': {
+                  animationName: 'enter',
+                  '--enter-opacity': '0',
+                  '--enter-translate-y': 'token(sizes.2)',
+                },
+                _closed: {
+                  animationName: 'exit',
+                  '--exit-opacity': '0',
+                  // '--exit-translate-y': 'token(sizes.1)',
+                },
               },
             })}
           >
-            Copy link to section
+            Click to copy link
           </Tooltip.Content>
         </Tooltip.Root>
       </Tooltip.Provider>

@@ -28,12 +28,12 @@ export default function ArticlesAccordion({
   const activeArticleNum = activeArticle?.data.article_number.toString()
 
   React.useEffect(() => {
-    const handleSetActivePath = () => {
+    const handlePageChange = () => {
       setLocalActivePath(window.location.pathname)
     }
-    document.addEventListener('astro:after-swap', handleSetActivePath)
+    document.addEventListener('astro:after-swap', handlePageChange)
     return () => {
-      document.removeEventListener('astro:after-swap', handleSetActivePath)
+      document.removeEventListener('astro:after-swap', handlePageChange)
     }
   }, [activePath])
 
@@ -72,10 +72,8 @@ export default function ArticlesAccordion({
                   <div
                     className={css({
                       flexGrow: '1',
-                      pl: '2',
-                      pr: '2',
-                      pt: '1',
-                      pb: '1',
+                      px: '2',
+                      py: '1',
                     })}
                   >
                     <span className={css({ fontWeight: 'medium' })}>
@@ -100,22 +98,20 @@ export default function ArticlesAccordion({
               </Accordion.Trigger>
               <Accordion.Content
                 className={css({
-                  display: 'grid',
                   pl: '3',
-                  transitionProperty:
-                    'grid-template-rows, padding-top, padding-bottom',
-                  transitionTimingFunction: 'ease',
+                  overflow: 'hidden',
                   _motionSafe: {
-                    transitionDuration: '0.2s',
-                  },
-                  gridTemplateRows: '0fr',
-                  '&[data-state="open"]': {
-                    gridTemplateRows: '1fr',
-                    pt: '1',
-                    pb: '2',
-                  },
-                  '&[data-state="closed"]': {
-                    visibility: 'hidden',
+                    animationDuration: 'token(durations.fast)',
+                    _open: {
+                      animationName: 'accordionOpen',
+                      '--accordion-height':
+                        'var(--radix-accordion-content-height)',
+                    },
+                    _closed: {
+                      animationName: 'accordionClosed',
+                      '--accordion-height':
+                        'var(--radix-accordion-content-height)',
+                    },
                   },
                 })}
               >
