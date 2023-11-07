@@ -73,6 +73,10 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
     class={css({
       // fontSmoothing: 'antialiased',
       h: 'full',
+      pt: {
+        base: '14',
+        lg: '16',
+      },
       fontFamily: 'inter',
     })}
   >
@@ -88,66 +92,59 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
     </div>
     <div
       class={css({
-        maxWidth: 'breakpoint-2xl',
-        mx: 'auto',
         h: 'full',
-        pt: {
-          base: '14',
-          lg: '16',
-        },
+        overflowY: 'auto',
       })}
     >
       <div
         class={css({
-          pos: 'fixed',
-          top: '0',
-          display: {
-            base: 'none',
-            lg: 'block',
-          },
-          h: 'full',
-          pt: '16',
-          w: {
-            lg: '72',
-            '2xl': '80',
-          },
+          maxWidth: 'breakpoint-2xl',
+          mx: 'auto',
         })}
       >
-        <nav
+        <div
           class={css({
-            pos: 'sticky',
+            pos: 'fixed',
+            top: '0',
+            display: {
+              base: 'none',
+              lg: 'block',
+            },
             h: 'full',
-            overflowY: 'auto',
-            borderRightColor: 'gray.200',
-            borderRightWidth: '1px',
+            pt: '16',
+            w: {
+              lg: '72',
+              '2xl': '80',
+            },
           })}
         >
-          <div
+          <nav
             class={css({
-              py: '8',
+              pos: 'sticky',
+              h: 'full',
+              overflowY: 'auto',
+              borderRightColor: 'gray.200',
+              borderRightWidth: '1px',
             })}
           >
-            <ArticlesAccordion
-              activePath={pathname}
-              articles={allArticles}
-              client:load
-              transition:persist
-            />
-          </div>
-        </nav>
+            <div
+              class={css({
+                py: '8',
+              })}
+            >
+              <ArticlesAccordion
+                activePath={pathname}
+                articles={allArticles}
+                client:load
+                transition:persist
+              />
+            </div>
+          </nav>
+        </div>
+        <main class={css({ pl: { lg: '72', '2xl': '80' } })}>
+          <slot />
+        </main>
       </div>
-      <main
-        class={css({
-          pl: {
-            lg: '72',
-            '2xl': '80',
-          },
-          h: 'full',
-          overflowY: 'auto',
-        })}
-      >
-        <slot />
-      </main>
     </div>
   </body>
 </html>
