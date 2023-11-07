@@ -1,8 +1,14 @@
 ---
 import { ExternalLink } from 'lucide-react'
+import { getCollection } from 'astro:content'
 import { css } from '../../styled-system/css'
 import { square } from '../../styled-system/patterns'
 import SearchComponent from './search'
+import MenuDrawer from './menu-drawer'
+import ArticlesAccordion from './articles-accordion'
+
+const allArticles = await getCollection('articles')
+const pathname = Astro.url.pathname
 ---
 
 <nav
@@ -120,9 +126,34 @@ import SearchComponent from './search'
           <SearchComponent client:load />
         </div>
       </div>
+      <!-- Mobile -->
       <div
         class={css({
-          display: 'none',
+          h: 'full',
+          alignItems: 'center',
+          pr: '4',
+          display: {
+            base: 'flex',
+            lg: 'none',
+          },
+        })}
+      >
+        <MenuDrawer client:load>
+          <ArticlesAccordion
+            activePath={pathname}
+            articles={allArticles}
+            client:load
+            transition:persist
+          />
+        </MenuDrawer>
+      </div>
+      <!-- Desktop -->
+      <div
+        class={css({
+          display: {
+            base: 'none',
+            lg: 'flex',
+          },
           h: 'full',
           flexShrink: '0',
           alignItems: 'center',
@@ -130,7 +161,6 @@ import SearchComponent from './search'
           fontSize: 'sm',
           lineHeight: 'sm',
           fontWeight: 'medium',
-          md: { display: 'flex' },
           w: {
             lg: '72',
             '2xl': '80',

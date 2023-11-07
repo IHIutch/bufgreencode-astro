@@ -2,7 +2,6 @@
 import NavbarComponent from '@components/navbar.astro'
 import { getCollection } from 'astro:content'
 import { ViewTransitions } from 'astro:transitions'
-import SubnavComponent from '@components/subnav'
 import ArticlesAccordion from '@components/articles-accordion'
 import { SEO } from 'astro-seo'
 import { css } from '../../styled-system/css'
@@ -74,10 +73,6 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
     class={css({
       // fontSmoothing: 'antialiased',
       h: 'full',
-      pt: {
-        base: '14',
-        lg: '16',
-      },
       fontFamily: 'inter',
     })}
   >
@@ -90,69 +85,69 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
       })}
     >
       <NavbarComponent transition:persist />
-      <SubnavComponent client:load>
-        <ArticlesAccordion
-          activePath={pathname}
-          articles={allArticles}
-          client:load
-        />
-      </SubnavComponent>
     </div>
     <div
       class={css({
+        maxWidth: 'breakpoint-2xl',
+        mx: 'auto',
         h: 'full',
-        overflowY: 'auto',
+        pt: {
+          base: '14',
+          lg: '16',
+        },
       })}
     >
       <div
         class={css({
-          maxWidth: 'breakpoint-2xl',
-          mx: 'auto',
+          pos: 'fixed',
+          top: '0',
+          display: {
+            base: 'none',
+            lg: 'block',
+          },
+          h: 'full',
+          pt: '16',
+          w: {
+            lg: '72',
+            '2xl': '80',
+          },
         })}
       >
-        <div
+        <nav
           class={css({
-            pos: 'fixed',
-            top: '0',
-            display: {
-              base: 'none',
-              lg: 'block',
-            },
+            pos: 'sticky',
             h: 'full',
-            pt: '16',
-            w: {
-              lg: '72',
-              '2xl': '80',
-            },
+            overflowY: 'auto',
+            borderRightColor: 'gray.200',
+            borderRightWidth: '1px',
           })}
         >
-          <nav
+          <div
             class={css({
-              pos: 'sticky',
-              h: 'full',
-              overflowY: 'auto',
-              borderRightColor: 'gray.200',
-              borderRightWidth: '1px',
+              py: '8',
             })}
           >
-            <div
-              class={css({
-                py: '8',
-              })}
-            >
-              <ArticlesAccordion
-                activePath={pathname}
-                articles={allArticles}
-                client:load
-                transition:persist
-              />
-            </div>
-          </nav>
-        </div>
-        <main class={css({ pl: { lg: '72', '2xl': '80' } })}>
-          <slot />
-        </main>
+            <ArticlesAccordion
+              activePath={pathname}
+              articles={allArticles}
+              client:load
+              transition:persist
+            />
+          </div>
+        </nav>
       </div>
+      <main
+        class={css({
+          pl: {
+            lg: '72',
+            '2xl': '80',
+          },
+          h: 'full',
+          overflowY: 'auto',
+        })}
+      >
+        <slot />
+      </main>
     </div>
   </body>
 </html>

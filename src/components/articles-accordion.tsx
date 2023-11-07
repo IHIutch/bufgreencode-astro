@@ -55,7 +55,10 @@ export default function ArticlesAccordion({
           <Accordion.Item asChild key={idx} value={articleNum}>
             <li className={css({ pl: '2', pr: '2', pb: '1' })}>
               <Accordion.Trigger
-                className={cx('group', css({ w: 'full', textAlign: 'left' }))}
+                className={cx(
+                  'group',
+                  css({ w: 'full', textAlign: 'left', cursor: 'pointer' }),
+                )}
               >
                 <div
                   className={css({

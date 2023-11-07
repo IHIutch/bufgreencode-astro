@@ -8,6 +8,7 @@ import type {
 import { env } from 'env-vars'
 import { css } from '../../styled-system/css'
 import { square } from '../../styled-system/patterns'
+import '@docsearch/css/dist/style.css'
 
 export default function SearchComponent() {
   const [isOpen, setIsOpen] = useState(false)
