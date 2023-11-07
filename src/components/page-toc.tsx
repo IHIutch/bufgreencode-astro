@@ -85,7 +85,7 @@ export default function PageToc({ headings }: { headings: MarkdownHeading[] }) {
             >
               <div
                 className={css({
-                  transition: 'all ease 0.2s',
+                  transition: 'transform ease 0.2s',
                   transform: isObservedSection(heading.slug)
                     ? 'translateX(token(sizes.2))'
                     : 'translateX(0)',

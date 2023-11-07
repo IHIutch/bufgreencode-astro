@@ -8,6 +8,7 @@ import H3 from '@components/content/h3.astro'
 import H4 from '@components/content/h4.astro'
 import H5 from '@components/content/h5.astro'
 import H6 from '@components/content/h6.astro'
+import MobileToc from '@components/mobile-toc'
 import { css, cx } from '../../styled-system/css'
 import { customProse, prose } from '../../styled-system/recipes'
 
@@ -70,6 +71,9 @@ const { Content, headings } = await entry.render()
             </p>
           ) : null
         }
+        <MobileToc client:load>
+          <PageToc headings={headings} client:load />
+        </MobileToc>
         <div class={cx(prose(), customProse())}>
           <Content
             components={{
