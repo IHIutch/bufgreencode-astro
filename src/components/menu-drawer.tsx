@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as Dialog from '@radix-ui/react-dialog'
+import { Dialog, Portal } from '@ark-ui/react'
 import { ExternalLink } from 'lucide-react'
 import { css, cx } from '../../styled-system/css'
 import { square } from '../../styled-system/patterns'
@@ -10,10 +10,8 @@ export default function MenuDrawer({
 }: {
   children?: React.ReactNode
 }) {
-  const [open, setOpen] = React.useState(false)
-
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Root modal={false} trapFocus={true}>
       <Dialog.Trigger
         className={cx(
           'group',
@@ -38,144 +36,155 @@ export default function MenuDrawer({
       >
         <HamburgerIcon />
       </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Overlay
-          className={cx(
-            css({
-              pos: 'fixed',
-              insetX: '0',
-              top: '14',
-              bottom: '0',
-              bg: 'black',
-              opacity: '0.4',
-              zIndex: '3',
-              _motionSafe: {
-                animationDuration: 'token(durations.fast)',
-                _open: {
-                  animationName: 'enter',
-                  '--enter-opacity': '0',
-                },
-                _closed: {
-                  animationName: 'exit',
-                  '--exit-opacity': '0',
-                },
-              },
-            }),
-          )}
-        />
-        <Dialog.Content
+      <Portal>
+        <Dialog.Backdrop
           className={css({
-            zIndex: '3',
             pos: 'fixed',
-            bottom: '0',
+            insetX: '0',
             top: '14',
-            right: '0',
-            bg: 'white',
-            maxWidth: 'sm',
-            w: 'full',
-            display: 'flex',
-            flexDirection: 'column',
+            bottom: '0',
+            opacity: '0.4',
+            bg: 'black',
+            zIndex: '3',
             _motionSafe: {
               animationDuration: 'token(durations.fast)',
               _open: {
                 animationName: 'enter',
-                '--enter-translate-x': 'token(sizes.full)',
+                '--enter-opacity': '0',
               },
               _closed: {
                 animationName: 'exit',
-                '--exit-translate-x': 'token(sizes.full)',
+                '--exit-opacity': '0',
               },
             },
           })}
+        />
+        <Dialog.Container
+          className={css({
+            pos: 'fixed',
+            inset: '0',
+            zIndex: '3',
+            display: 'flex',
+          })}
         >
-          <Dialog.Title
+          <Dialog.Content
             className={css({
-              py: '4',
-              px: '6',
-              fontSize: 'xl',
-              fontWeight: 'semibold',
-              borderBottomWidth: '1px',
-              borderBottomColor: 'slate.200',
-            })}
-          >
-            Menu
-          </Dialog.Title>
-          <div
-            className={css({
-              py: '2',
-              overflowY: 'auto',
-              flex: '1',
-            })}
-          >
-            {children}
-          </div>
-          <div
-            className={css({
-              py: '3',
-              px: '6',
-              borderTopWidth: '1px',
-              borderTopColor: 'slate.200',
+              pos: 'fixed',
+              bottom: '0',
+              top: '14',
+              right: '0',
+              bg: 'white',
+              width: 'sm',
+              _motionSafe: {
+                animationDuration: 'token(durations.fast)',
+                _open: {
+                  animationName: 'enter',
+                  '--enter-translate-x': 'token(sizes.full)',
+                },
+                _closed: {
+                  animationName: 'exit',
+                  '--exit-translate-x': 'token(sizes.full)',
+                },
+              },
             })}
           >
             <div
               className={css({
+                h: 'full',
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                mx: '-2',
+                flexDirection: 'column',
               })}
             >
-              <div>
-                <a
-                  href="/disclaimer"
-                  className={css({
-                    px: '2',
-                    py: '2',
-                    color: {
-                      base: 'gray.600',
-                      _hover: 'gray.900',
-                    },
-                    fontWeight: 'medium',
-                    fontSize: 'sm',
-                  })}
-                >
-                  Disclaimer
-                </a>
+              <Dialog.Title
+                className={css({
+                  py: '4',
+                  px: '6',
+                  fontSize: 'xl',
+                  fontWeight: 'semibold',
+                  borderBottomWidth: '1px',
+                  borderBottomColor: 'slate.200',
+                })}
+              >
+                Menu
+              </Dialog.Title>
+              <div
+                className={css({
+                  py: '2',
+                  overflowY: 'auto',
+                  flex: '1',
+                })}
+              >
+                {children}
               </div>
-              <div>
-                <a
+              <div
+                className={css({
+                  py: '3',
+                  px: '6',
+                  borderTopWidth: '1px',
+                  borderTopColor: 'slate.200',
+                })}
+              >
+                <div
                   className={css({
                     display: 'flex',
                     alignItems: 'center',
-                    px: '2',
-                    py: '2',
-                    color: {
-                      base: 'gray.600',
-                      _hover: 'gray.900',
-                    },
-                    fontWeight: 'medium',
-                    fontSize: 'sm',
+                    justifyContent: 'space-between',
+                    mx: '-2',
                   })}
-                  href="https://github.com/IHIutch/bufgreencode_v2/issues/new?assignees=&labels=&projects=&template=found-an-issue.yml"
-                  target="_blank"
-                  rel="noreferrer"
                 >
-                  <span
-                    className={css({
-                      mr: '1',
-                    })}
-                  >
-                    Report an Issue
-                  </span>
-                  <span>
-                    <ExternalLink className={square({ size: '3' })} />
-                  </span>
-                </a>
+                  <div>
+                    <a
+                      href="/disclaimer"
+                      className={css({
+                        px: '2',
+                        py: '2',
+                        color: {
+                          base: 'gray.600',
+                          _hover: 'gray.900',
+                        },
+                        fontWeight: 'medium',
+                        fontSize: 'sm',
+                      })}
+                    >
+                      Disclaimer
+                    </a>
+                  </div>
+                  <div>
+                    <a
+                      className={css({
+                        display: 'flex',
+                        alignItems: 'center',
+                        px: '2',
+                        py: '2',
+                        color: {
+                          base: 'gray.600',
+                          _hover: 'gray.900',
+                        },
+                        fontWeight: 'medium',
+                        fontSize: 'sm',
+                      })}
+                      href="https://github.com/IHIutch/bufgreencode_v2/issues/new?assignees=&labels=&projects=&template=found-an-issue.yml"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span
+                        className={css({
+                          mr: '1',
+                        })}
+                      >
+                        Report an Issue
+                      </span>
+                      <span>
+                        <ExternalLink className={square({ size: '3' })} />
+                      </span>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </Dialog.Content>
-      </Dialog.Portal>
+          </Dialog.Content>
+        </Dialog.Container>
+      </Portal>
     </Dialog.Root>
   )
 }

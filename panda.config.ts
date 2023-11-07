@@ -55,14 +55,6 @@ export default defineConfig({
               'translate3d(var(--exit-translate-x, 0), var(--exit-translate-y, 0), 0) scale3d(var(--exit-scale, 1), var(--exit-scale, 1), var(--exit-scale, 1)) rotate(var(--exit-rotate, 0))',
           },
         },
-        accordionOpen: {
-          from: { height: '0' },
-          to: { height: 'var(--accordion-height, 0)' },
-        },
-        accordionClosed: {
-          from: { height: 'var(--accordion-height, 0)' },
-          to: { height: '0' },
-        },
       },
     },
   },

@@ -1,5 +1,6 @@
 import { type ReactNode, useState } from 'react'
-import * as DocSearch from '@docsearch/react'
+
+import * as DocSearch from '@docsearch/react' // https://github.com/algolia/docsearch/pull/2117#issuecomment-1793855627
 import { Search } from 'lucide-react'
 import type {
   InternalDocSearchHit,

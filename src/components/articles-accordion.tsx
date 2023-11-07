@@ -1,6 +1,11 @@
-import groupBy from 'lodash/groupBy'
-import * as Accordion from '@radix-ui/react-accordion'
 import * as React from 'react'
+import groupBy from 'lodash/groupBy'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@ark-ui/react'
 import { ChevronDown } from 'lucide-react'
 import type { CollectionEntry } from 'astro:content'
 import { css, cx } from '../../styled-system/css'
@@ -38,9 +43,8 @@ export default function ArticlesAccordion({
   }, [activePath])
 
   return (
-    <Accordion.Root
-      asChild
-      type="multiple"
+    <Accordion
+      multiple
       defaultValue={activeArticleNum ? [activeArticleNum] : []}
     >
       <ul
@@ -48,16 +52,24 @@ export default function ArticlesAccordion({
           px: '2',
           py: '1',
           fontSize: 'sm',
-          lineHeight: 'sm',
         })}
       >
         {Object.keys(groupedArticles).map((articleNum, idx) => (
-          <Accordion.Item asChild key={idx} value={articleNum}>
-            <li className={css({ pl: '2', pr: '2', pb: '1' })}>
-              <Accordion.Trigger
+          <AccordionItem key={idx} value={articleNum}>
+            <li
+              className={css({
+                px: '2',
+                pb: '1',
+              })}
+            >
+              <AccordionTrigger
                 className={cx(
                   'group',
-                  css({ w: 'full', textAlign: 'left', cursor: 'pointer' }),
+                  css({
+                    w: 'full',
+                    textAlign: 'left',
+                    cursor: 'pointer',
+                  }),
                 )}
               >
                 <div
@@ -65,8 +77,7 @@ export default function ArticlesAccordion({
                     display: 'flex',
                     w: 'full',
                     alignItems: 'center',
-                    color: 'gray.600',
-                    _hover: { color: 'gray.900' },
+                    color: { base: 'gray.600', _hover: 'gray.900' },
                   })}
                 >
                   <div
@@ -76,7 +87,11 @@ export default function ArticlesAccordion({
                       py: '1',
                     })}
                   >
-                    <span className={css({ fontWeight: 'medium' })}>
+                    <span
+                      className={css({
+                        fontWeight: 'medium',
+                      })}
+                    >
                       {groupedArticles[articleNum][0].data.article_number}.{' '}
                       {groupedArticles[articleNum][0].data.article}
                     </span>
@@ -84,7 +99,7 @@ export default function ArticlesAccordion({
                   <div>
                     <div
                       className={css({
-                        transition: 'ease 0.2s transform',
+                        transition: 'transform ease 0.2s',
                         transform: 'rotate(0)',
                         _groupExpanded: {
                           transform: 'rotate(180deg)',
@@ -95,23 +110,25 @@ export default function ArticlesAccordion({
                     </div>
                   </div>
                 </div>
-              </Accordion.Trigger>
-              <Accordion.Content
+              </AccordionTrigger>
+              <AccordionContent
                 className={css({
+                  display: 'grid',
                   pl: '3',
-                  overflow: 'hidden',
                   _motionSafe: {
-                    animationDuration: 'token(durations.fast)',
-                    _open: {
-                      animationName: 'accordionOpen',
-                      '--accordion-height':
-                        'var(--radix-accordion-content-height)',
-                    },
-                    _closed: {
-                      animationName: 'accordionClosed',
-                      '--accordion-height':
-                        'var(--radix-accordion-content-height)',
-                    },
+                    transitionProperty:
+                      'grid-template-rows, padding-top, padding-bottom',
+                    transitionDuration: '0.2s',
+                    transitionTimingFunction: 'ease',
+                  },
+                  _open: {
+                    gridTemplateRows: '1fr',
+                    pt: '1',
+                    pb: '2',
+                  },
+                  _closed: {
+                    gridTemplateRows: '0fr',
+                    visibility: 'hidden',
                   },
                 })}
               >
@@ -119,6 +136,12 @@ export default function ArticlesAccordion({
                   className={css({
                     overflow: 'hidden',
                   })}
+                  // animate({
+                  //   animationName: 'enter',
+                  //   translateY: 'token(spacing.-2)',
+                  //   opacity: '0.4',
+                  //   animationDuration: 'token(durations.normal)',
+                  // }),
                 >
                   {groupedArticles[articleNum].map((section, sIdx) => (
                     <li
@@ -164,37 +187,20 @@ export default function ArticlesAccordion({
                             },
                           })}
                         >
-                          <div
-                            className={css({
-                              borderLeftWidth: '2px',
-                              borderColor: 'transparent',
-                              px: '2',
-                              transitionProperty: 'all',
-                              transitionTimingFunction: 'all',
-                              transitionDuration: '200',
-                            })}
-                          >
-                            <span
-                              className={css({
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
-                                whiteSpace: 'nowrap',
-                              })}
-                            >
-                              {section.data.article_number}.
-                              {section.data.section_number} {section.data.title}
-                            </span>
-                          </div>
+                          <span>
+                            {section.data.article_number}.
+                            {section.data.section_number} {section.data.title}
+                          </span>
                         </a>
                       </div>
                     </li>
                   ))}
                 </ul>
-              </Accordion.Content>
+              </AccordionContent>
             </li>
-          </Accordion.Item>
+          </AccordionItem>
         ))}
       </ul>
-    </Accordion.Root>
+    </Accordion>
   )
 }
