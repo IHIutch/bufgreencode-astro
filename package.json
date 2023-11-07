@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint '**/*.{astro,js,jsx,ts,tsx,md,mdx,json}' --ignore-path .gitignore .",
+    "lint": "eslint '**/*.{astro,js,jsx,ts,tsx,md,mdx}' --ignore-path .gitignore .",
     "pretty": "prettier --write . --plugin=prettier-plugin-astro",
     "prepare": "husky install && panda codegen"
   },
@@ -21,11 +21,10 @@
     "@radix-ui/react-collapsible": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.5",
     "@t3-oss/env-core": "^0.7.1",
-    "@types/react": "^18.0.28",
+    "@types/react": "^18.2.36",
     "@types/react-dom": "^18.0.11",
     "astro": "^3.4.3",
     "astro-seo": "^0.8.0",
-    "autoprefixer": "^10.4.14",
     "clsx": "^2.0.0",
     "lodash": "^4.17.21",
     "lucide-react": "^0.292.0",
@@ -38,8 +37,8 @@
     "@pandacss/astro": "^0.18.0",
     "@pandacss/dev": "^0.18.0",
     "@types/lodash": "^4.14.200",
-    "@typescript-eslint/eslint-plugin": "^6.9.1",
-    "eslint": "^8.52.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-astro": "^0.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
@@ -51,7 +50,7 @@
     "prettier-plugin-astro": "^0.12.1"
   },
   "lint-staged": {
-    "*.{astro,js,jsx,ts,tsx,md,mdx,json}": [
+    "*.{astro,js,jsx,ts,tsx,md,mdx}": [
       "prettier --write . --plugin=prettier-plugin-astro",
       "eslint --ignore-path .gitignore . --fix"
     ]

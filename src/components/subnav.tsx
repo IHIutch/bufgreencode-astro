@@ -45,7 +45,7 @@ export default function SubnavComponent({
               </Collapsible.Trigger>
             </div>
           </div>
-          <Collapsible.Content className="overflow-hidden transition-all data-[state=closed]:animate-collapsable-up data-[state=open]:animate-collapsable-down">
+          <Collapsible.Content className="data-[state=closed]:animate-collapsable-up data-[state=open]:animate-collapsable-down overflow-hidden transition-all">
             <nav className="z-0 flex h-full max-h-[calc(100vh-6.5rem)] grow flex-col justify-between">
               <div className="h-full overflow-y-auto">
                 <div className="py-2">{children}</div>
