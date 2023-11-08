@@ -35,7 +35,7 @@ export const proseRecipe = defineRecipe({
         fontWeight: 'normal',
         fontSize: 'md',
         mt: '3',
-        mb: '5',
+        mb: '4',
       },
       ':where(a)': {
         fontWeight: 'medium',
@@ -112,7 +112,7 @@ export const proseRecipe = defineRecipe({
       },
       ':where(li)': {
         paddingStart: '2',
-        my: '3',
+        my: '2',
       },
       ':where(ol>li)': {
         '&::marker': {
