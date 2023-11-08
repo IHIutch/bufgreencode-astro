@@ -11,24 +11,24 @@ export const proseRecipe = defineRecipe({
       ':where(h1)': {
         fontWeight: 'bold',
         fontSize: { base: '4xl', md: '5xl' },
-        mb: { base: '8', md: '10' },
+        mb: { base: '4', md: '6' },
       },
       ':where(h2)': {
         fontWeight: 'bold',
         fontSize: { base: '2xl', md: '3xl' },
         mt: { base: '12', md: '14' },
-        mb: { base: '6', md: '8' },
+        mb: { base: '3', md: '4' },
       },
       ':where(h3)': {
         fontWeight: 'semibold',
         fontSize: { base: 'xl', md: '2xl' },
         mt: { base: '8', md: '10' },
-        mb: { base: '3', md: '4' },
+        mb: { base: '2', md: '3' },
       },
       ':where(h4)': {
         fontWeight: 'semibold',
         fontSize: { base: 'md', md: 'lg' },
-        mt: { base: '6', md: '8' },
+        mt: { base: '1', md: '2' },
         mb: '2',
       },
       ':where(p)': {
