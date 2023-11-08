@@ -5,8 +5,6 @@ import sitemap from '@astrojs/sitemap'
 import pandacss from '@pandacss/astro'
 import prefetch from '@astrojs/prefetch'
 
-// import vercel from '@astrojs/vercel/static'
-
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bufgreencode.com',
@@ -17,11 +15,4 @@ export default defineConfig({
     },
   },
   trailingSlash: 'always',
-  // output: 'server',
-  // adapter: vercel({
-  //   speedInsights: {
-  //     enabled: true,
-  //   },
-  //   imageService: true,
-  // }),
 })

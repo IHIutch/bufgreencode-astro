@@ -17,7 +17,6 @@
     "@astrojs/prefetch": "^0.4.1",
     "@astrojs/react": "^3.0.4",
     "@astrojs/sitemap": "^3.0.3",
-    "@astrojs/vercel": "^5.2.0",
     "@docsearch/css": "^3.3.3",
     "@docsearch/react": "^3.5.2",
     "@fontsource-variable/inter": "^5.0.15",
