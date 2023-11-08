@@ -45,6 +45,15 @@ export default function SearchComponent() {
           <span
             className={css({
               ml: '2',
+              display: { sm: 'none' },
+            })}
+          >
+            Search...
+          </span>
+          <span
+            className={css({
+              ml: '2',
+              display: { base: 'none', sm: 'inline' },
             })}
           >
             Search the Green Code...
