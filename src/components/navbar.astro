@@ -1,6 +1,9 @@
 ---
 import { ExternalLink } from 'lucide-react'
 import { getCollection } from 'astro:content'
+import logo from '@assets/images/bufgreencode-logo.svg'
+import icon from '@assets/images/bufgreencode-icon.svg'
+import { Image } from 'astro:assets'
 import { css } from '../../styled-system/css'
 import { square } from '../../styled-system/patterns'
 import SearchComponent from './search'
@@ -71,12 +74,10 @@ const pathname = Astro.url.pathname
               },
             })}
           >
-            <img
+            <Image
               transition:persist
-              src="/meta/bufgreencode-icon.svg"
+              src={icon}
               alt="Buffalo Green Code"
-              height={47}
-              width={47}
               class={css({
                 h: 'full',
                 w: 'auto',
@@ -85,12 +86,10 @@ const pathname = Astro.url.pathname
                 },
               })}
             />
-            <img
+            <Image
               transition:persist
-              src="/meta/bufgreencode-logo.svg"
+              src={logo}
               alt="Buffalo Green Code"
-              height={47}
-              width={115}
               class={css({
                 display: {
                   base: 'none',

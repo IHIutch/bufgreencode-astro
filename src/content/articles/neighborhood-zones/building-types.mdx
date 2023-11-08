@@ -8,6 +8,8 @@ section_number: 2
 import TableSmall from '@components/content/table-small.astro'
 import TableResponsive from '@components/content/table-responsive.astro'
 import FigureImg from '@components/content/figure-img.astro'
+import { Image } from 'astro:assets'
+import Attached_House from '@assets/images/3-2/3-2-2.jpg'
 
 All principal buildings in the neighborhood zones must comply with the standards of this section.
 
@@ -138,7 +140,7 @@ All principal buildings in the neighborhood zones must comply with the standards
 ## 3.2.2 Attached House
 
 <FigureImg caption="3.2.2 Attached House">
-  ![3.2.2 Attached House](/assets/images/3-2/3-2-2/3-2-2.jpg)
+  <Image src={Attached_House} alt="Attached House" />
 </FigureImg>
 
 1. Description
