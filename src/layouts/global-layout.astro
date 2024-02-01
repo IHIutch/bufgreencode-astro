@@ -134,7 +134,10 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
             >
               <ArticlesAccordion
                 activePath={pathname}
-                articles={allArticles}
+                articles={allArticles.map((a) => ({
+                  slug: a.slug,
+                  data: a.data,
+                }))}
                 client:load
                 transition:persist
               />

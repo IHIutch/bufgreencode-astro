@@ -142,7 +142,10 @@ const pathname = Astro.url.pathname
         <MenuDrawer client:load>
           <ArticlesAccordion
             activePath={pathname}
-            articles={allArticles}
+            articles={allArticles.map((a) => ({
+              slug: a.slug,
+              data: a.data,
+            }))}
             client:load
             transition:persist
           />

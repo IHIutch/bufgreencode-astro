@@ -6,11 +6,13 @@ import type { CollectionEntry } from 'astro:content'
 import { css, cx } from '../../styled-system/css'
 import { square } from '../../styled-system/patterns'
 
+type ArticlesType = Pick<CollectionEntry<'articles'>, 'data' | 'slug'>
+
 export default function ArticlesAccordion({
   articles,
   activePath,
 }: {
-  articles: CollectionEntry<'articles'>[]
+  articles: ArticlesType[]
   activePath?: string
 }) {
   const [localActivePath, setLocalActivePath] = React.useState(activePath || '')
@@ -21,7 +23,7 @@ export default function ArticlesAccordion({
         a.data.section_number -
         (b.data.article_number + b.data.section_number),
     ),
-    'data.article_number',
+    'article_number',
   )
 
   const activeArticle = articles.find((a) => `/${a.slug}/` === activePath)
