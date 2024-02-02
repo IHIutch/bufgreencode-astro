@@ -60,7 +60,8 @@ export default function SearchComponent() {
           </span>
         </div>
       </button>
-      {isOpen ? (
+      {isOpen
+        ? (
         <DocSearch.DocSearchModal
           initialScrollY={window.scrollY}
           appId={env.PUBLIC_ALGOLIA_APP_ID}
@@ -78,8 +79,8 @@ export default function SearchComponent() {
                 item.hierarchy.lvl0 = item.hierarchy.lvl0.replace(/&amp;/g, '&')
 
               if (item._highlightResult?.hierarchy?.lvl0?.value) {
-                item._highlightResult.hierarchy.lvl0.value =
-                  item._highlightResult.hierarchy.lvl0.value.replace(
+                item._highlightResult.hierarchy.lvl0.value
+                  = item._highlightResult.hierarchy.lvl0.value.replace(
                     /&amp;/g,
                     '&',
                   )
@@ -102,7 +103,8 @@ export default function SearchComponent() {
             })
           }}
         />
-      ) : null}
+          )
+        : null}
     </>
   )
 }

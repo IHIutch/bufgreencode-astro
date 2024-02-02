@@ -38,7 +38,7 @@ export default function PageToc({ headings }: { headings: MarkdownHeading[] }) {
     // Observe all the headings in the main page content.
     document
       .querySelectorAll('.prose :is(h2,h3,h4,h5,h6)')
-      .forEach((h) => headingsObserver.observe(h))
+      .forEach(h => headingsObserver.observe(h))
 
     // Stop observing when the component is unmounted.
     return () => headingsObserver.disconnect()

@@ -17,7 +17,8 @@ export function HeadingLink({ id }: { id: string }) {
       setTimeout(() => {
         // setIsToolTipVisible(false)
       }, 1000)
-    } else {
+    }
+    else {
       console.error('Clipboard API is not available in this browser')
     }
   }
@@ -63,12 +64,12 @@ export function HeadingLink({ id }: { id: string }) {
                 _motionSafe: {
                   animationDuration: 'token(durations.fast)',
                   _open: {
-                    animationName: 'enter',
+                    'animationName': 'enter',
                     '--enter-opacity': '0',
                     '--enter-translate-y': 'token(spacing.2)',
                   },
                   _closed: {
-                    animationName: 'exit',
+                    'animationName': 'exit',
                     '--exit-opacity': '0',
                     // '--exit-translate-y': 'token(spacing.1)',
                   },

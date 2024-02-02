@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint '**/*.{astro,js,jsx,ts,tsx}' --ignore-path .gitignore .",
+    "lint": "eslint '**/*.{astro,js,jsx,ts,tsx,md,mdx}' --ignore-path .gitignore .",
     "pretty": "prettier --write . --plugin=prettier-plugin-astro",
     "prepare": "husky && panda codegen"
   },
@@ -50,8 +50,11 @@
     "prettier-plugin-astro": "^0.13.0"
   },
   "lint-staged": {
-    "*.{astro,js,jsx,ts,tsx}": [
-      "prettier --write . --plugin=prettier-plugin-astro",
+    "*.astro": [
+      "prettier --write -u --plugin=prettier-plugin-astro",
+      "eslint --ignore-path .gitignore . --fix"
+    ],
+    "*.{js,jsx,ts,tsx,md,mdx}": [
       "eslint --ignore-path .gitignore . --fix"
     ]
   }

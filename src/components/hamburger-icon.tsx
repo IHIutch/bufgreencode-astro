@@ -24,7 +24,7 @@ export function HamburgerIcon(props: ComponentProps<'svg'>): ReactElement {
           transitionTimingFunction: 'cubic-bezier(0.25, 1, 0.5, 1), ease',
           transitionDelay: '0.2s, 0.2s',
         },
-        _groupExpanded: {
+        '_groupExpanded': {
           '& g': {
             transitionDelay: 'fast',
           },

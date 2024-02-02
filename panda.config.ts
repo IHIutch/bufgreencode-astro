@@ -27,7 +27,7 @@ export default defineConfig({
       },
       tokens: {
         fonts: {
-          inter: { value: "'Inter Variable', sans-serif" },
+          inter: { value: '\'Inter Variable\', sans-serif' },
         },
         lineHeights: {
           3: { value: '0.75rem' },

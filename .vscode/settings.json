@@ -1,6 +1,6 @@
 {
   "prettier.enable": true,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
@@ -20,8 +20,5 @@
     "json",
     "jsonc",
     "yaml"
-  ],
-  "files.associations": {
-    "*.mdx": "markdown"
-  }
+  ]
 }
