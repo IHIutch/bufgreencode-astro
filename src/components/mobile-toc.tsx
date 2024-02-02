@@ -28,7 +28,7 @@ export default function MobileToc({ children }: { children: ReactNode }) {
         })}
       >
         <Accordion.Item value="one">
-          <Accordion.Trigger
+          <Accordion.ItemTrigger
             className={cx(
               'group',
               css({
@@ -83,8 +83,8 @@ export default function MobileToc({ children }: { children: ReactNode }) {
             >
               <ChevronDown className={square({ size: '5' })} />
             </div>
-          </Accordion.Trigger>
-          <Accordion.Content
+          </Accordion.ItemTrigger>
+          <Accordion.ItemContent
             className={cx(
               'group',
               css({
@@ -127,7 +127,7 @@ export default function MobileToc({ children }: { children: ReactNode }) {
             >
               {children}
             </div>
-          </Accordion.Content>
+          </Accordion.ItemContent>
         </Accordion.Item>
       </Accordion.Root>
     </div>

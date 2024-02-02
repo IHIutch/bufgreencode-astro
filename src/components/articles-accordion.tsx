@@ -19,14 +19,14 @@ export default function ArticlesAccordion({
   const groupedArticles = groupBy(
     articles.sort(
       (a, b) =>
-        a.data.article_number +
-        a.data.section_number -
-        (b.data.article_number + b.data.section_number),
+        a.data.article_number
+        + a.data.section_number
+        - (b.data.article_number + b.data.section_number),
     ),
-    'article_number',
+    'data.article_number',
   )
 
-  const activeArticle = articles.find((a) => `/${a.slug}/` === activePath)
+  const activeArticle = articles.find(a => `/${a.slug}/` === activePath)
   const activeArticleNum = activeArticle?.data.article_number.toString()
 
   React.useEffect(() => {
@@ -59,7 +59,7 @@ export default function ArticlesAccordion({
                 pb: '1',
               })}
             >
-              <Accordion.Trigger
+              <Accordion.ItemTrigger
                 className={cx(
                   'group',
                   css({
@@ -107,8 +107,8 @@ export default function ArticlesAccordion({
                     </div>
                   </div>
                 </div>
-              </Accordion.Trigger>
-              <Accordion.Content
+              </Accordion.ItemTrigger>
+              <Accordion.ItemContent
                 className={cx(
                   'group',
                   css({
@@ -179,14 +179,14 @@ export default function ArticlesAccordion({
                               : undefined
                           }
                           className={css({
-                            display: 'block',
-                            px: '2',
-                            transition: 'color ease 0.2s',
-                            borderLeftWidth: '2px',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap',
-                            borderColor: 'transparent',
+                            'display': 'block',
+                            'px': '2',
+                            'transition': 'color ease 0.2s',
+                            'borderLeftWidth': '2px',
+                            'overflow': 'hidden',
+                            'textOverflow': 'ellipsis',
+                            'whiteSpace': 'nowrap',
+                            'borderColor': 'transparent',
                             '&[aria-current=page]': {
                               borderColor: 'green.700',
                               color: 'green.700',
@@ -202,7 +202,7 @@ export default function ArticlesAccordion({
                     </li>
                   ))}
                 </ul>
-              </Accordion.Content>
+              </Accordion.ItemContent>
             </li>
           </Accordion.Item>
         ))}

@@ -49,17 +49,17 @@ export default function MenuDrawer({
             _motionSafe: {
               animationDuration: 'token(durations.fast)',
               _open: {
-                animationName: 'enter',
+                'animationName': 'enter',
                 '--enter-opacity': '0',
               },
               _closed: {
-                animationName: 'exit',
+                'animationName': 'exit',
                 '--exit-opacity': '0',
               },
             },
           })}
         />
-        <Dialog.Container
+        <Dialog.Positioner
           className={css({
             pos: 'fixed',
             inset: '0',
@@ -78,11 +78,11 @@ export default function MenuDrawer({
               _motionSafe: {
                 animationDuration: 'token(durations.fast)',
                 _open: {
-                  animationName: 'enter',
+                  'animationName': 'enter',
                   '--enter-translate-x': 'token(sizes.full)',
                 },
                 _closed: {
-                  animationName: 'exit',
+                  'animationName': 'exit',
                   '--exit-translate-x': 'token(sizes.full)',
                 },
               },
@@ -183,7 +183,7 @@ export default function MenuDrawer({
               </div>
             </div>
           </Dialog.Content>
-        </Dialog.Container>
+        </Dialog.Positioner>
       </Portal>
     </Dialog.Root>
   )
