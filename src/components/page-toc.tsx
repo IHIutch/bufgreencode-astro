@@ -1,6 +1,6 @@
 import type { MarkdownHeading } from 'astro'
 import { type MouseEvent, useEffect, useState } from 'react'
-import { css } from '../../styled-system/css'
+import { css, cx } from '../../styled-system/css'
 
 export default function PageToc({ headings }: { headings: MarkdownHeading[] }) {
   const [currentHeading, setCurrentHeading] = useState({
@@ -18,6 +18,7 @@ export default function PageToc({ headings }: { headings: MarkdownHeading[] }) {
             slug: entry.target.id,
             text: entry.target.textContent || '',
           })
+
           break
         }
       }
@@ -51,7 +52,7 @@ export default function PageToc({ headings }: { headings: MarkdownHeading[] }) {
     })
   }
 
-  const isObservedSection = (slug: string) => currentHeading.slug === slug
+  const isObservedSection = (slug: string) => currentHeading.slug === slug ? true : undefined
 
   return (
     <ul>
@@ -69,34 +70,37 @@ export default function PageToc({ headings }: { headings: MarkdownHeading[] }) {
           <a
             href={`#${heading.slug}`}
             onClick={onLinkClick}
-            className={css({
+            className={cx('group', css({
               display: 'block',
               py: '1.5',
-            })}
+            }))}
+            data-active={isObservedSection(heading.slug)}
           >
             <div
               className={css({
                 borderLeftWidth: '2px',
-                borderLeftColor: isObservedSection(heading.slug)
-                  ? 'green.700'
-                  : 'transparent',
+                borderLeftColor: 'transparent',
                 transition: 'border-color ease 0.2s',
+                _groupActive: {
+                  borderLeftColor: 'green.700'
+                }
               })}
             >
               <div
                 className={css({
                   transition: 'transform ease 0.2s',
-                  transform: isObservedSection(heading.slug)
-                    ? 'translateX(token(sizes.2))'
-                    : 'translateX(0)',
+                  transform: 'translateX(0)',
+                  _groupActive: {
+                    transform: 'translateX(token(sizes.2))'
+                  },
                 })}
               >
                 <span
                   className={css({
                     fontWeight: 'medium',
-                    color: isObservedSection(heading.slug)
-                      ? 'green.700'
-                      : undefined,
+                    _groupActive: {
+                      color: 'green.700'
+                    }
                   })}
                 >
                   {heading.text}
