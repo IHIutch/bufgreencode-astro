@@ -13,7 +13,6 @@ export default defineConfig({
     },
   },
   prefetch: true,
-  trailingSlash: 'always',
   redirects: {
     '/article/1': '/introductory-provisions/title-purpose-and-applicability',
     '/article/1/1-1':

@@ -163,7 +163,7 @@ export default function MenuDrawer({
                         fontWeight: 'medium',
                         fontSize: 'sm',
                       })}
-                      href="https://github.com/IHIutch/bufgreencode_v2/issues/new?assignees=&labels=&projects=&template=found-an-issue.yml"
+                      href="https://forms.reform.app/szenkB/buffalo-green-code/sxml6n"
                       target="_blank"
                       rel="noreferrer"
                     >

@@ -5,6 +5,7 @@ import { ChevronDown } from 'lucide-react'
 import type { CollectionEntry } from 'astro:content'
 import { css, cx } from '../../styled-system/css'
 import { square } from '../../styled-system/patterns'
+import type { TransitionBeforeSwapEvent } from 'astro:transitions/client'
 
 type ArticlesType = Pick<CollectionEntry<'articles'>, 'data' | 'slug'>
 
@@ -13,9 +14,9 @@ export default function ArticlesAccordion({
   activePath,
 }: {
   articles: ArticlesType[]
-  activePath?: string
+  activePath: string
 }) {
-  const [localActivePath, setLocalActivePath] = React.useState(activePath || '')
+  const [localActivePath, setLocalActivePath] = React.useState(activePath)
   const groupedArticles = groupBy(
     articles.sort(
       (a, b) =>
@@ -26,187 +27,174 @@ export default function ArticlesAccordion({
     'data.article_number',
   )
 
-  const activeArticle = articles.find(a => `/${a.slug}/` === activePath)
+  const activeArticle = articles.find(a => `/${a.slug}` === localActivePath)
   const activeArticleNum = activeArticle?.data.article_number.toString()
 
   React.useEffect(() => {
-    const handlePageChange = () => {
-      setLocalActivePath(window.location.pathname)
-    }
-    document.addEventListener('astro:after-swap', handlePageChange)
-    return () => {
-      document.removeEventListener('astro:after-swap', handlePageChange)
-    }
-  }, [activePath])
+    document.addEventListener('astro:before-swap', (e: TransitionBeforeSwapEvent) => {
+      setLocalActivePath(e.to.pathname)
+    })
+  }, [])
 
   return (
-    <Accordion.Root
-      multiple
-      defaultValue={activeArticleNum ? [activeArticleNum] : []}
-    >
-      <ul
-        className={css({
-          px: '2',
-          py: '1',
-          fontSize: 'sm',
-        })}
+    <div>
+
+      <Accordion.Root
+        multiple
+        defaultValue={activeArticleNum ? [activeArticleNum] : []}
       >
-        {Object.keys(groupedArticles).map((articleNum, idx) => (
-          <Accordion.Item key={idx} value={articleNum}>
-            <li
-              className={css({
-                px: '2',
-                pb: '1',
-              })}
-            >
-              <Accordion.ItemTrigger
-                className={cx(
-                  'group',
-                  css({
-                    w: 'full',
-                    textAlign: 'left',
-                    cursor: 'pointer',
-                  }),
-                )}
+        <ul
+          className={css({
+            px: '2',
+            py: '1',
+            fontSize: 'sm',
+          })}
+        >
+          {Object.keys(groupedArticles).map((articleNum, idx) => (
+            <Accordion.Item key={idx} value={articleNum}>
+              <li
+                className={css({
+                  px: '2',
+                  pb: '1',
+                })}
               >
-                <div
-                  className={css({
-                    display: 'flex',
-                    w: 'full',
-                    alignItems: 'center',
-                    color: { base: 'gray.600', _hover: 'gray.900' },
-                  })}
+                <Accordion.ItemTrigger
+                  className={cx(
+                    'group',
+                    css({
+                      w: 'full',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                    }),
+                  )}
                 >
                   <div
                     className={css({
-                      flexGrow: '1',
-                      px: '2',
-                      py: '1',
+                      display: 'flex',
+                      w: 'full',
+                      alignItems: 'center',
+                      color: { base: 'gray.600', _hover: 'gray.900' },
                     })}
                   >
-                    <span
-                      className={css({
-                        fontWeight: 'medium',
-                      })}
-                    >
-                      {groupedArticles[articleNum][0].data.article_number}.{' '}
-                      {groupedArticles[articleNum][0].data.article}
-                    </span>
-                  </div>
-                  <div>
                     <div
                       className={css({
-                        transition: 'transform ease 0.2s',
-                        transform: 'rotate(0)',
-                        _groupExpanded: {
-                          transform: 'rotate(180deg)',
-                        },
+                        flexGrow: '1',
+                        px: '2',
+                        py: '1',
                       })}
                     >
-                      <ChevronDown className={square({ size: '4' })} />
-                    </div>
-                  </div>
-                </div>
-              </Accordion.ItemTrigger>
-              <Accordion.ItemContent
-                className={cx(
-                  'group',
-                  css({
-                    display: 'grid',
-                    pl: '3',
-                    _motionSafe: {
-                      transitionProperty:
-                        'grid-template-rows, padding-top, padding-bottom',
-                      transitionDuration: '0.2s',
-                      transitionTimingFunction: 'ease',
-                    },
-                    _open: {
-                      gridTemplateRows: '1fr',
-                      pt: '1',
-                      pb: '2',
-                    },
-                    _closed: {
-                      gridTemplateRows: '0fr',
-                      // visibility: 'hidden',
-                    },
-                  }),
-                )}
-              >
-                <ul
-                  className={css({
-                    overflow: 'hidden',
-                    // _motionSafe: {
-                    //   '.group:is(data-state=open):&': {
-                    //     animationName: 'enter',
-                    //     '--enter-opacity': '0.4',
-                    //     '--enter-translate-y': 'token(spacing.-2)',
-                    //   },
-                    //   '.group:is(data-state=closed):&': {
-                    //     animationName: 'exit',
-                    //     '--exit-opacity': '0.4',
-                    //     '--exit-translate-y': 'token(spacing.-2)',
-                    //   },
-                    // },
-                  })}
-                >
-                  {groupedArticles[articleNum].map((section, sIdx) => (
-                    <li
-                      key={sIdx}
-                      className={css({
-                        borderLeftWidth: '1px',
-                        borderLeftColor: 'gray.300',
-                      })}
-                    >
-                      <div
+                      <span
                         className={css({
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          whiteSpace: 'nowrap',
-                          py: '1.5',
-                          color: {
-                            base: 'gray.600',
-                            _hover: 'gray.900',
-                          },
-                          ml: '-1px',
-                          transition: 'color ease 0.2s',
+                          fontWeight: 'medium',
                         })}
                       >
-                        <a
-                          href={`/${section.slug}/`}
-                          aria-current={
-                            localActivePath === `/${section.slug}/`
-                              ? 'page'
-                              : undefined
-                          }
+                        {groupedArticles[articleNum][0].data.article_number}.{' '}
+                        {groupedArticles[articleNum][0].data.article}
+                      </span>
+                    </div>
+                    <div>
+                      <div
+                        className={css({
+                          transition: 'transform ease 0.2s',
+                          transform: 'rotate(0)',
+                          _groupExpanded: {
+                            transform: 'rotate(180deg)',
+                          },
+                        })}
+                      >
+                        <ChevronDown className={square({ size: '4' })} />
+                      </div>
+                    </div>
+                  </div>
+                </Accordion.ItemTrigger>
+                <Accordion.ItemContent
+                  className={cx(
+                    'group',
+                    css({
+                      display: 'grid',
+                      pl: '3',
+                      _motionSafe: {
+                        transitionProperty:
+                          'grid-template-rows, padding-top, padding-bottom',
+                        transitionDuration: '0.2s',
+                        transitionTimingFunction: 'ease',
+                      },
+                      _open: {
+                        gridTemplateRows: '1fr',
+                        pt: '1',
+                        pb: '2',
+                      },
+                      _closed: {
+                        gridTemplateRows: '0fr',
+                        // visibility: 'hidden',
+                      },
+                    }),
+                  )}
+                >
+                  <ul
+                    className={css({
+                      overflow: 'hidden',
+                    })}
+                  >
+                    {groupedArticles[articleNum].map((section, sIdx) => (
+                      <li
+                        key={sIdx}
+                        className={css({
+                          borderLeftWidth: '1px',
+                          borderLeftColor: 'gray.300',
+                        })}
+                      >
+                        <div
                           className={css({
-                            'display': 'block',
-                            'px': '2',
-                            'transition': 'color ease 0.2s',
-                            'borderLeftWidth': '2px',
-                            'overflow': 'hidden',
-                            'textOverflow': 'ellipsis',
-                            'whiteSpace': 'nowrap',
-                            'borderColor': 'transparent',
-                            '&[aria-current=page]': {
-                              borderColor: 'green.700',
-                              color: 'green.700',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap',
+                            py: '1.5',
+                            color: {
+                              base: 'gray.600',
+                              _hover: 'gray.900',
                             },
+                            ml: '-1px',
+                            transition: 'color ease 0.2s',
                           })}
                         >
-                          <span>
-                            {section.data.article_number}.
-                            {section.data.section_number} {section.data.title}
-                          </span>
-                        </a>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </Accordion.ItemContent>
-            </li>
-          </Accordion.Item>
-        ))}
-      </ul>
-    </Accordion.Root>
+                          <a
+                            href={`/${section.slug}`}
+                            aria-current={
+                              localActivePath === `/${section.slug}`
+                                ? 'page'
+                                : undefined
+                            }
+                            className={css({
+                              'display': 'block',
+                              'px': '2',
+                              'transition': 'color ease 0.2s',
+                              'borderLeftWidth': '2px',
+                              'overflow': 'hidden',
+                              'textOverflow': 'ellipsis',
+                              'whiteSpace': 'nowrap',
+                              'borderColor': 'transparent',
+                              '&[aria-current=page]': {
+                                borderColor: 'green.700',
+                                color: 'green.700',
+                              },
+                            })}
+                          >
+                            <span>
+                              {section.data.article_number}.
+                              {section.data.section_number} {section.data.title}
+                            </span>
+                          </a>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </Accordion.ItemContent>
+              </li>
+            </Accordion.Item>
+          ))}
+        </ul>
+      </Accordion.Root>
+    </div>
   )
 }

@@ -14,7 +14,11 @@
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"]
     },
-    "strictNullChecks": true
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true
   },
-  "include": ["src", "**/*.ts", "**/*.tsx", "styled-system"]
+  "exclude": ["./src/assets/*"]
 }
