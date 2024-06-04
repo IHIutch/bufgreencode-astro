@@ -154,52 +154,47 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
     </div>
 
     <script>
-      import invariant from 'tiny-invariant'
-
       document.addEventListener('astro:page-load', () => {
         const sidenav = document.querySelector('#sidenav')
-        invariant(sidenav, `Could not find elmenent '#sidenav'`)
-
         const sidenavActiveLink = sidenav?.querySelector('[aria-current=page]')
-        invariant(
-          sidenavActiveLink,
-          `Could not find elmenent with 'aria-current=page'`,
-        )
 
-        const key = 'scroll-state'
-        const savedStateJson = sessionStorage.getItem(key)
+        if (sidenav && sidenavActiveLink) {
+          const key = 'scroll-state'
+          const savedStateJson = sessionStorage.getItem(key)
 
-        let savedState
+          let savedState
 
-        if (savedStateJson) {
-          try {
-            savedState = JSON.parse(savedStateJson)
-          } catch (e) {
-            console.error('Error parsing saved position:', e)
+          if (savedStateJson) {
+            try {
+              savedState = JSON.parse(savedStateJson)
+            } catch (e) {
+              console.error('Error parsing saved position:', e)
+            }
           }
-        }
 
-        if (savedState) {
-          sidenav.scrollTop = savedState.scrollTop
-        } else {
-          sidenavActiveLink.scrollIntoView({
-            behavior: 'instant',
-            block: 'center',
-          })
+          if (savedState) {
+            sidenav.scrollTop = savedState.scrollTop
+          } else {
+            sidenavActiveLink.scrollIntoView({
+              behavior: 'instant',
+              block: 'center',
+            })
+          }
         }
       })
 
       document.addEventListener('astro:before-swap', () => {
-        const key = 'scroll-state'
         const sidenav = document.querySelector('#sidenav')
-        invariant(sidenav, `Could not find elmenent '#sidenav'`)
 
-        sessionStorage.setItem(
-          key,
-          JSON.stringify({
-            scrollTop: sidenav.scrollTop,
-          }),
-        )
+        if (sidenav) {
+          const key = 'scroll-state'
+          sessionStorage.setItem(
+            key,
+            JSON.stringify({
+              scrollTop: sidenav.scrollTop,
+            }),
+          )
+        }
       })
     </script>
   </body>
