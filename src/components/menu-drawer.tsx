@@ -163,9 +163,7 @@ export default function MenuDrawer({
                         fontWeight: 'medium',
                         fontSize: 'sm',
                       })}
-                      href="https://forms.reform.app/szenkB/buffalo-green-code/sxml6n"
-                      target="_blank"
-                      rel="noreferrer"
+                      href="/report-an-issue"
                     >
                       <span
                         className={css({
@@ -173,9 +171,6 @@ export default function MenuDrawer({
                         })}
                       >
                         Report an Issue
-                      </span>
-                      <span>
-                        <ExternalLink className={square({ size: '3' })} />
                       </span>
                     </a>
                   </div>

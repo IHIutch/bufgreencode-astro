@@ -1,0 +1,41 @@
+---
+import SidebarLayout from '@layouts/global-layout.astro'
+import { css } from '../../styled-system/css'
+---
+
+<SidebarLayout>
+  <div
+    class={css({
+      mb: '12',
+      w: { base: 'full', xl: 'calc(100% - token(sizes.80))' },
+      px: { base: '4', md: '8' },
+    })}
+  >
+    <div
+      class={css({ maxW: 'prose', mx: { base: 'auto', md: '0', xl: 'auto' } })}
+    >
+      <div id="my-reform"></div>
+
+      <script is:inline>
+        window.Reform =
+          window.Reform ||
+          function () {
+            ;(Reform.q = Reform.q || []).push(arguments)
+          }
+      </script>
+      <script
+        is:inline
+        id="reform-script"
+        async
+        src="https://embed.reform.app/v1/embed.js"></script>
+      <script>
+        // @ts-ignore
+        Reform('init', {
+          url: 'https://forms.reform.app/szenkB/buffalo-green-code/sxml6n',
+          target: '#my-reform',
+          background: 'default',
+        })
+      </script>
+    </div>
+  </div>
+</SidebarLayout>
