@@ -29,11 +29,13 @@ import { css } from '../../styled-system/css'
         async
         src="https://embed.reform.app/v1/embed.js"></script>
       <script>
-        // @ts-ignore
-        Reform('init', {
-          url: 'https://forms.reform.app/szenkB/buffalo-green-code/sxml6n',
-          target: '#my-reform',
-          background: 'default',
+        document.addEventListener('astro:page-load', () => {
+          // @ts-ignore
+          Reform('init', {
+            url: 'https://forms.reform.app/szenkB/buffalo-green-code/sxml6n',
+            target: '#my-reform',
+            background: 'default',
+          })
         })
       </script>
     </div>
