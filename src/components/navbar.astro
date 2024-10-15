@@ -44,9 +44,9 @@ const pathname = Astro.url.pathname
           h: 'full',
           flexShrink: '0',
           w: {
-            'base': '16',
-            'md': '40',
-            'lg': '72',
+            base: '16',
+            md: '40',
+            lg: '72',
             '2xl': '80',
           },
           pl: '4',
@@ -140,7 +140,7 @@ const pathname = Astro.url.pathname
         <MenuDrawer client:load>
           <ArticlesAccordion
             activePath={pathname}
-            articles={allArticles.map(a => ({
+            articles={allArticles.map((a) => ({
               slug: a.slug,
               data: a.data,
             }))}
@@ -201,8 +201,7 @@ const pathname = Astro.url.pathname
           <span
             class={css({
               mr: '1',
-            })}
-          >Report an Issue</span
+            })}>Report an Issue</span
           >
         </a>
       </div>

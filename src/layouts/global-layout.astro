@@ -21,8 +21,8 @@ const { pageTitle } = Astro.props
 const description = 'Buffalo Green Code Unified Development Ordinance'
 const image = new URL('meta/meta-img.jpeg', Astro.url.origin).href
 const siteTitle = 'Buffalo Green Code'
-const imageAlt
-  = 'The city of buffalo overlayed with a semitransparent green background and the Buffalo Green Code logo in the middle'
+const imageAlt =
+  'The city of buffalo overlayed with a semitransparent green background and the Buffalo Green Code logo in the middle'
 const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
 ---
 
@@ -115,7 +115,7 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
             h: 'full',
             pt: '16',
             w: {
-              'lg': '72',
+              lg: '72',
               '2xl': '80',
             },
           })}
@@ -137,7 +137,7 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
             >
               <ArticlesAccordion
                 activePath={pathname}
-                articles={allArticles.map(a => ({
+                articles={allArticles.map((a) => ({
                   slug: a.slug,
                   data: a.data,
                 }))}
@@ -147,7 +147,7 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
             </div>
           </nav>
         </div>
-        <main class={css({ pl: { 'lg': '72', '2xl': '80' } })}>
+        <main class={css({ pl: { lg: '72', '2xl': '80' } })}>
           <slot />
         </main>
       </div>
@@ -167,7 +167,7 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
           if (savedStateJson) {
             try {
               savedState = JSON.parse(savedStateJson)
-            // eslint-disable-next-line style/brace-style
+              // eslint-disable-next-line style/brace-style
             } catch (e) {
               console.error('Error parsing saved position:', e)
             }
@@ -175,7 +175,7 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
 
           if (savedState) {
             sidenav.scrollTop = savedState.scrollTop
-          // eslint-disable-next-line style/brace-style
+            // eslint-disable-next-line style/brace-style
           } else {
             sidenavActiveLink.scrollIntoView({
               behavior: 'instant',
@@ -198,6 +198,6 @@ const title = pageTitle ? `${pageTitle} · ${siteTitle}` : siteTitle
           )
         }
       })
- </script>
+    </script>
   </body>
 </html>

@@ -11,24 +11,17 @@ import { css } from '../../styled-system/css'
       px: { base: '4', md: '8' },
     })}
   >
-    <div
-      class={css({ maxW: 'prose', mx: { base: 'auto', md: '0', xl: 'auto' } })}
-    >
+    <div class={css({ maxW: 'prose', mx: { base: 'auto', md: '0', xl: 'auto' } })}>
       <div id="my-reform"></div>
 
       <script is:inline>
-        window.Reform
-          = window.Reform
-          || function (...args) {
-            ;(Reform.q = Reform.q || []).push(args)
-          }
+        window.Reform = window.Reform || []
+        function reform(...args) {
+          ;(Reform.q = Reform.q || []).push(args)
+        }
+        reform()
       </script>
-      <script
-        is:inline
-        id="reform-script"
-        async
-        src="https://embed.reform.app/v1/embed.js"
-      ></script>
+      <script is:inline id="reform-script" async src="https://embed.reform.app/v1/embed.js"></script>
       <script>
         document.addEventListener('astro:page-load', () => {
           window.Reform('init', {

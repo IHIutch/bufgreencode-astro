@@ -15,7 +15,7 @@ import { customProse, prose } from '../../styled-system/recipes'
 export const getStaticPaths = (async () => {
   const allArticles = await getCollection('articles')
 
-  return allArticles.map(entry => ({
+  return allArticles.map((entry) => ({
     params: { path: entry.slug },
     props: { entry },
   }))
@@ -59,8 +59,7 @@ const { Content, headings } = await entry.render()
           {entry.data.title}
         </h1>
         {
-          entry.data.lead
-? (
+          entry.data.lead ? (
             <p
               class={css({
                 fontSize: 'xl',
@@ -70,8 +69,7 @@ const { Content, headings } = await entry.render()
             >
               {entry.data.lead}
             </p>
-          )
-: null
+          ) : null
         }
         <MobileToc client:load>
           <PageToc headings={headings} client:load />
@@ -90,8 +88,7 @@ const { Content, headings } = await entry.render()
       </div>
     </div>
     {
-      headings?.length > 0
-? (
+      headings?.length > 0 ? (
         <aside
           class={css({
             pos: 'fixed',
@@ -128,8 +125,7 @@ const { Content, headings } = await entry.render()
             </div>
           </div>
         </aside>
-      )
-: null
+      ) : null
     }
   </div>
 </SidebarLayout>
