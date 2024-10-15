@@ -82,8 +82,8 @@ export default function PageToc({ headings }: { headings: MarkdownHeading[] }) {
                 borderLeftColor: 'transparent',
                 transition: 'border-color ease 0.2s',
                 _groupActive: {
-                  borderLeftColor: 'green.700'
-                }
+                  borderLeftColor: 'green.700',
+                },
               })}
             >
               <div
@@ -91,7 +91,7 @@ export default function PageToc({ headings }: { headings: MarkdownHeading[] }) {
                   transition: 'transform ease 0.2s',
                   transform: 'translateX(0)',
                   _groupActive: {
-                    transform: 'translateX(token(sizes.2))'
+                    transform: 'translateX(token(sizes.2))',
                   },
                 })}
               >
@@ -99,8 +99,8 @@ export default function PageToc({ headings }: { headings: MarkdownHeading[] }) {
                   className={css({
                     fontWeight: 'medium',
                     _groupActive: {
-                      color: 'green.700'
-                    }
+                      color: 'green.700',
+                    },
                   })}
                 >
                   {heading.text}

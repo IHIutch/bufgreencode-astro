@@ -1,6 +1,4 @@
-'use client'
-
-import React, { type ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 import { ChevronDown, ListOrdered } from 'lucide-react'
 import { Accordion } from '@ark-ui/react'

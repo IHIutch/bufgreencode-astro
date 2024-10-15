@@ -69,12 +69,12 @@ export const proseCss = css.raw({
       },
     },
     '& :where(pre)': {
-      p: '4',
-      rounded: 'md',
-      bg: 'gray.600',
-      color: 'gray.50',
-      overflow: 'auto',
-      _dark: {
+      'p': '4',
+      'rounded': 'md',
+      'bg': 'gray.600',
+      'color': 'gray.50',
+      'overflow': 'auto',
+      '_dark': {
         bg: 'gray.800',
       },
       '& code': {
@@ -91,7 +91,7 @@ export const proseCss = css.raw({
       },
     },
     '& :where(figure)': {
-      my: '8',
+      'my': '8',
       '& figcaption': {
         color: 'gray.400',
         mt: '3',
@@ -128,9 +128,9 @@ export const proseCss = css.raw({
       },
     },
     '& :where(table)': {
-      width: 'full',
-      my: '8',
-      textAlign: 'start',
+      'width': 'full',
+      'my': '8',
+      'textAlign': 'start',
       '& thead': {
         borderBottomWidth: '1px',
         borderBottomColor: 'gray.300',
@@ -142,13 +142,15 @@ export const proseCss = css.raw({
         textAlign: 'inherit',
         fontWeight: 'semibold',
         p: {
-          base: '2', md: '3'
+          base: '2',
+          md: '3',
         },
       },
       '& td': {
         verticalAlign: 'baseline',
         p: {
-          base: '2', md: '3'
+          base: '2',
+          md: '3',
         },
       },
       '& tbody': {
@@ -178,5 +180,5 @@ export const proseCss = css.raw({
     {
       mt: '0',
     },
-  }
+  },
 })

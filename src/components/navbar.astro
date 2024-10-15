@@ -1,11 +1,9 @@
 ---
-import { ExternalLink } from 'lucide-react'
 import { getCollection } from 'astro:content'
 import logo from '@assets/images/bufgreencode-logo.svg'
 import icon from '@assets/images/bufgreencode-icon.svg'
 import { Image } from 'astro:assets'
 import { css } from '../../styled-system/css'
-import { square } from '../../styled-system/patterns'
 import SearchComponent from './search'
 import MenuDrawer from './menu-drawer'
 import ArticlesAccordion from './articles-accordion'
@@ -46,9 +44,9 @@ const pathname = Astro.url.pathname
           h: 'full',
           flexShrink: '0',
           w: {
-            base: '16',
-            md: '40',
-            lg: '72',
+            'base': '16',
+            'md': '40',
+            'lg': '72',
             '2xl': '80',
           },
           pl: '4',
@@ -142,7 +140,7 @@ const pathname = Astro.url.pathname
         <MenuDrawer client:load>
           <ArticlesAccordion
             activePath={pathname}
-            articles={allArticles.map((a) => ({
+            articles={allArticles.map(a => ({
               slug: a.slug,
               data: a.data,
             }))}
@@ -203,7 +201,8 @@ const pathname = Astro.url.pathname
           <span
             class={css({
               mr: '1',
-            })}>Report an Issue</span
+            })}
+          >Report an Issue</span
           >
         </a>
       </div>

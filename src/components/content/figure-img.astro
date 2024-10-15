@@ -26,7 +26,8 @@ const { caption } = Astro.props
     <slot />
   </div>
   {
-    caption ? (
+    caption
+? (
       <figcaption
         class={css({
           mt: '0.5',
@@ -36,6 +37,7 @@ const { caption } = Astro.props
       >
         {caption}
       </figcaption>
-    ) : null
+    )
+: null
   }
 </figure>

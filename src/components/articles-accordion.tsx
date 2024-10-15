@@ -3,9 +3,9 @@ import groupBy from 'lodash/groupBy'
 import { Accordion } from '@ark-ui/react'
 import { ChevronDown } from 'lucide-react'
 import type { CollectionEntry } from 'astro:content'
+import type { TransitionBeforeSwapEvent } from 'astro:transitions/client'
 import { css, cx } from '../../styled-system/css'
 import { square } from '../../styled-system/patterns'
-import type { TransitionBeforeSwapEvent } from 'astro:transitions/client'
 
 type ArticlesType = Pick<CollectionEntry<'articles'>, 'data' | 'slug'>
 
@@ -88,7 +88,9 @@ export default function ArticlesAccordion({
                           fontWeight: 'medium',
                         })}
                       >
-                        {groupedArticles[articleNum][0].data.article_number}.{' '}
+                        {groupedArticles[articleNum][0].data.article_number}
+                        .
+                        {' '}
                         {groupedArticles[articleNum][0].data.article}
                       </span>
                     </div>
@@ -181,8 +183,11 @@ export default function ArticlesAccordion({
                             })}
                           >
                             <span>
-                              {section.data.article_number}.
-                              {section.data.section_number} {section.data.title}
+                              {section.data.article_number}
+                              .
+                              {section.data.section_number}
+                              {' '}
+                              {section.data.title}
                             </span>
                           </a>
                         </div>

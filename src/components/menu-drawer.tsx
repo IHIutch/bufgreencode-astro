@@ -1,8 +1,6 @@
 import * as React from 'react'
 import { Dialog, Portal } from '@ark-ui/react'
-import { ExternalLink } from 'lucide-react'
 import { css, cx } from '../../styled-system/css'
-import { square } from '../../styled-system/patterns'
 import { HamburgerIcon } from './hamburger-icon'
 
 export default function MenuDrawer({

@@ -5,6 +5,7 @@ export default antfu(
   {
     formatters: true,
     astro: true,
+    typescript: true,
     ignores: [
       // # build output
       'dist/',

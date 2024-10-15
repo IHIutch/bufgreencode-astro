@@ -17,21 +17,21 @@ import { css } from '../../styled-system/css'
       <div id="my-reform"></div>
 
       <script is:inline>
-        window.Reform =
-          window.Reform ||
-          function () {
-            ;(Reform.q = Reform.q || []).push(arguments)
+        window.Reform
+          = window.Reform
+          || function (...args) {
+            ;(Reform.q = Reform.q || []).push(args)
           }
       </script>
       <script
         is:inline
         id="reform-script"
         async
-        src="https://embed.reform.app/v1/embed.js"></script>
+        src="https://embed.reform.app/v1/embed.js"
+      ></script>
       <script>
         document.addEventListener('astro:page-load', () => {
-          // @ts-ignore
-          Reform('init', {
+          window.Reform('init', {
             url: 'https://forms.reform.app/szenkB/buffalo-green-code/sxml6n',
             target: '#my-reform',
             background: 'default',
